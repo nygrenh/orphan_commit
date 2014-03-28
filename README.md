@@ -9,6 +9,6 @@ A miniproject for course [Software Engineering](https://github.com/mluukkai/ohtu
 
 Heroku: https://orphan-commit.herokuapp.com/
 
-Product Backlog: https://docs.google.com/spreadsheet/ccc?key=0AsyJhgHbxp2RdGo2cE5RUTZQVFhGRlh5cmg2S1YzbGc&usp=sharing
+Product Backlog: https://docs.google.com/spreadsheet/pub?key=0AsyJhgHbxp2RdGo2cE5RUTZQVFhGRlh5cmg2S1YzbGc&single=true&gid=0&output=html
 
-Sprint 1. Backlog: https://docs.google.com/spreadsheet/ccc?key=0AsyJhgHbxp2RdFdtY2hUTDNVOERyMlR2dENBektUd3c&usp=sharing
+Sprint 1. Backlog: https://docs.google.com/spreadsheet/pub?key=0AsyJhgHbxp2RdFdtY2hUTDNVOERyMlR2dENBektUd3c&output=html
