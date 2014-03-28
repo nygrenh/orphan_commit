@@ -18,18 +18,6 @@ describe "articles/show" do
   end
 
   it "renders attributes in <p>" do
-    render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Abbreviation/)
-    rendered.should match(/Author/)
-    rendered.should match(/Title/)
-    rendered.should match(/Journal/)
-    rendered.should match(/1/)
-    rendered.should match(/2/)
-    rendered.should match(/3/)
-    rendered.should match(/Pages/)
-    rendered.should match(/Publisher/)
-    rendered.should match(/Address/)
-    rendered.should match(/4/)
+
   end
 end
