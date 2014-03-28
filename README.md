@@ -5,4 +5,6 @@ A miniproject for course [Software Engineering](https://github.com/mluukkai/ohtu
 
 [![Build Status](https://travis-ci.org/nygrenh/orphan_commit.svg?branch=master)](https://travis-ci.org/nygrenh/orphan_commit)
 
+[![Code Climate](https://codeclimate.com/github/nygrenh/orphan_commit.png)](https://codeclimate.com/github/nygrenh/orphan_commit)
+
 Heroku: https://orphan-commit.herokuapp.com/
