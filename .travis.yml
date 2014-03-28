@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.0.0
+script:
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: J2wFc6RtyBezTJsHudkubop0W/qXA1/0aehVX0eHohrU2zZbmU+CCH+zOxs5CrB9843AWz1qaY0YFnDw7TkQQat4Hmnez0HQcWHJWuD1vd8KnofS7Nmy/B7CC6wf9ewTjNmLEI7sydrt77FUjaO1PwhVeYsVKBz9kQ011I8n4sU=
+  app: orphan-commit
+  on:
+    repo: nygrenh/orphan_commit
