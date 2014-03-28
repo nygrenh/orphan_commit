@@ -8,3 +8,7 @@ A miniproject for course [Software Engineering](https://github.com/mluukkai/ohtu
 [![Code Climate](https://codeclimate.com/github/nygrenh/orphan_commit.png)](https://codeclimate.com/github/nygrenh/orphan_commit)
 
 Heroku: https://orphan-commit.herokuapp.com/
+
+Product Backlog: https://docs.google.com/spreadsheet/pub?key=0AsyJhgHbxp2RdGo2cE5RUTZQVFhGRlh5cmg2S1YzbGc&output=html
+
+Sprint 1. Backlog: https://docs.google.com/spreadsheet/pub?key=0AsyJhgHbxp2RdFdtY2hUTDNVOERyMlR2dENBektUd3c&output=html
