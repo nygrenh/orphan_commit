@@ -1,0 +1,23 @@
+<h1>Listing references</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Year</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @references.each do |referencetype| %>
+    <% referencetype.each do |reference| %>
+      <tr>
+        <td><%= link_to reference.title, reference %></td>
+        <td><%= reference.author %></td>
+        <td><%= reference.year %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
