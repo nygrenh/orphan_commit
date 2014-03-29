@@ -13,6 +13,12 @@ group :production do
    gem 'rails_12factor' 
 end
 
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'simplecov', require: false
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

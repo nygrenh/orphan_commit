@@ -1,6 +1,6 @@
 <h1>Listing references</h1>
 
-<table>
+<table class="table table-striped" class="table table-hover">
   <thead>
   <tr>
     <th>Title</th>
@@ -13,6 +13,7 @@
   <% @references.each do |referencetype| %>
     <% referencetype.each do |reference| %>
       <tr>
+        <!-- Every reference type seems to have at least these three attributes -->
         <td><%= link_to reference.title, reference %></td>
         <td><%= reference.author %></td>
         <td><%= reference.year %></td>
@@ -21,3 +22,5 @@
   <% end %>
   </tbody>
 </table>
+
+<p>Number of references: <%= @amount %></p>
