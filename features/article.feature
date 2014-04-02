@@ -1,7 +1,7 @@
 Feature: Article reference
     In order to reference articles
     As a user
-    I want to be add an article reference
+    I want to add an article reference
 
     Scenario: User can create a reference
         Given I am on new article reference page
