@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140403182553) do
 
+
   create_table "articles", force: true do |t|
     t.string   "key"
     t.string   "author"
@@ -26,6 +27,8 @@ ActiveRecord::Schema.define(version: 20140403182553) do
     t.datetime "updated_at"
     t.integer  "month"
     t.string   "note"
+    t.string   "publisher"
+    t.string   "address"
   end
 
   create_table "authors", force: true do |t|
