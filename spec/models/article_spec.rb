@@ -6,6 +6,11 @@ describe "Articles" do
     expect(Article.count).to eq(0)
   end
 
+  it "has a sane string representation" do
+    article = FactoryGirl.create(:article)
+    expect(article.to_s).to eq("Pekka. Pekan kuvakirja. Nykyaikaiset kuvakirjat, 5(3):2-5, 2013")
+  end
+
   describe "after adding one article" do
 
 
