@@ -8,5 +8,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
+    publisher "Kuvakirjat"
+    address "Finland"
   end
 end
