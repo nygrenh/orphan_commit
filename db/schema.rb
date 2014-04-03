@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403005530) do
+ActiveRecord::Schema.define(version: 20140403065326) do
 
   create_table "articles", force: true do |t|
     t.string   "key"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140403005530) do
     t.datetime "updated_at"
     t.integer  "month"
     t.string   "note"
+    t.string   "publisher"
+    t.string   "address"
   end
 
 end
