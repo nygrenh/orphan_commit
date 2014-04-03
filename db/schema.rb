@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328130319) do
+ActiveRecord::Schema.define(version: 20140403005530) do
 
   create_table "articles", force: true do |t|
-    t.string   "abbreviation"
+    t.string   "key"
     t.string   "author"
     t.string   "title"
     t.string   "journal"
@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(version: 20140328130319) do
     t.integer  "number"
     t.integer  "year"
     t.string   "pages"
-    t.string   "publisher"
-    t.string   "address"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "month"
+    t.string   "note"
   end
 
 end

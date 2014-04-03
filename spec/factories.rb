@@ -6,7 +6,7 @@ FactoryGirl.define do
     year 2013
     volume 5
     number 3
-    abbreviation "PK"
+    key "PK"
     pages "2-5"
   end
 end
