@@ -9,17 +9,11 @@ class Article < ActiveRecord::Base
                             numericality: {less_than_or_equal_to: ->(_) { Time.now.year },
                                            greater_than_or_equal_to: 0}
 
-  validates :volume,        presence: true,
-                            numericality: {only_integer: true,
+  validates :volume,        numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
 
-  validates :number,        presence: true,
-                            numericality: {only_integer: true,
+  validates :number,        numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
-
-  validates :abbreviation,  presence: true
-
-  validates :pages,         presence: true
 
 
   def to_s
