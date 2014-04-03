@@ -67,3 +67,6 @@ end
 
 # Load enviroment variables
 gem 'dotenv-rails'
+
+gem 'coveralls', require: false
+
