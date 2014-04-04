@@ -1,6 +1,11 @@
 OrphanCommit::Application.routes.draw do
   resources :articles
-  get 'references', to: 'references#index'
+  resources :references
+
+  get 'new_article', to:'references#new_article'
+  get 'new_book', to:'references#new_book'
+  get 'new_inproceeding', to:'references#new_inproceeding'
+
   root 'references#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

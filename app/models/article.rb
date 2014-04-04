@@ -16,6 +16,10 @@ class Article < ActiveRecord::Base
   validates :number,        allow_blank: true,
                             numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
+  validates :month,         allow_blank: true,
+                            numericality: {only_integer: true,
+                                           greater_than_or_equal_to: 1,
+                                           less_than_or_equal_to: 12}
 
 
   def to_s

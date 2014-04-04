@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+
+  Key: <%= @reference.key %><br>
+  Authors: <%= @reference.authors_to_s %><br>
+  Title: <%= @reference.title %><br>
+  Journal: <%= @reference.journal.name %><br>
+  Volume: <%= @reference.volume %><br>
+  Number: <%= @reference.number %><br>
+  Year: <%= @reference.year %><br>
+  Pages: <%= @reference.pages %><br>
+  Month: <%= @reference.month %><br>
+  Note: <%= @reference.note %><br>
+  Publisher: <%= @reference.publisher.name %><br>
+  Address: <%= @reference.address %><br>
+
+</div>
+
+
+
+  <%= link_to 'Edit', edit_reference_path(@reference) %> |
+  <%= link_to 'Back', references_path %>

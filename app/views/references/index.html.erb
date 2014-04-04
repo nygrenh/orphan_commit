@@ -2,25 +2,27 @@
 
 <table class="table table-hover">
   <thead>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Year</th>
-    <th>Type</th>
-  </tr>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th></th>
+    </tr>
   </thead>
 
   <tbody>
-  <% @references.each do |reference| %>
+    <% @references.each do |reference| %>
       <tr>
-        <!-- Every reference type seems to have at least these three attributes -->
-        <td><%= reference.title %></td>
-        <td><%= reference.authors.first.name %></td>
-        <td><%= reference.year %></td>
-        <td><%= reference.reference_type.name %></td>
+        <td><%= link_to reference.title, reference %></td>
+        <td><%= reference.authors_to_s %></td>
+        <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
+        <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
 
-<p>Number of references: <%= @references.count %></p>
+<br>
+
+<%= link_to 'New Article', 'new_article' %><br>
+<%= link_to 'New Book', 'new_book' %><br>
+<%= link_to 'New Inproceeding', 'new_inproceeding' %>
