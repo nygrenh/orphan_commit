@@ -9,10 +9,12 @@ class Article < ActiveRecord::Base
                             numericality: {less_than_or_equal_to: ->(_) { Time.now.year },
                                            greater_than_or_equal_to: 0}
 
-  validates :volume,        numericality: {only_integer: true,
+  validates :volume,        allow_blank: true,
+                            numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
 
-  validates :number,        numericality: {only_integer: true,
+  validates :number,        allow_blank: true,
+                            numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
 
 
