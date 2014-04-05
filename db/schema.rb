@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328130319) do
+ActiveRecord::Schema.define(version: 20140405165143) do
 
   create_table "articles", force: true do |t|
-    t.string   "abbreviation"
+    t.string   "key"
     t.string   "author"
     t.string   "title"
     t.string   "journal"
@@ -22,9 +22,60 @@ ActiveRecord::Schema.define(version: 20140328130319) do
     t.integer  "number"
     t.integer  "year"
     t.string   "pages"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "month"
+    t.string   "note"
     t.string   "publisher"
     t.string   "address"
-    t.integer  "user_id"
+  end
+
+  create_table "authors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "journals", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publishers", force: true do |t|
+    t.string   "name"
+    t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reference_authors", force: true do |t|
+    t.integer  "author_id"
+    t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reference_types", force: true do |t|
+    t.string   "name"
+    t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "references", force: true do |t|
+    t.integer  "reference_type_id"
+    t.integer  "journal_id"
+    t.string   "title"
+    t.integer  "year"
+    t.integer  "volume"
+    t.integer  "number"
+    t.string   "pages"
+    t.integer  "month"
+    t.string   "note"
+    t.string   "key"
+    t.integer  "publisher_id"
+    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

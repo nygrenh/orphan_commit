@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'sqlite3'
+  gem 'byebug'
+  gem 'launchy', '~> 2.4.2'
 end
 
 group :production do
@@ -32,7 +34,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+
  gem 'therubyracer', platforms: :ruby
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -67,3 +71,5 @@ end
 
 # Load enviroment variables
 gem 'dotenv-rails'
+
+gem 'coveralls', require: false

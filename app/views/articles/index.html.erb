@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Abbreviation</th>
+      <th>Key</th>
       <th>Author</th>
       <th>Title</th>
       <th>Journal</th>
@@ -11,6 +11,8 @@
       <th>Number</th>
       <th>Year</th>
       <th>Pages</th>
+      <th>Month</th>
+      <th>Note</th>
       <th>Publisher</th>
       <th>Address</th>
     </tr>
@@ -19,7 +21,7 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><%= link_to article.abbreviation, article %></td>
+        <td><%= link_to article.key, article %></td>
         <td><%= article.author %></td>
         <td><%= article.title %></td>
         <td><%= article.journal %></td>
@@ -27,6 +29,8 @@
         <td><%= article.number %></td>
         <td><%= article.year %></td>
         <td><%= article.pages %></td>
+        <td><%= article.month %></td>
+        <td><%= article.note %></td>
         <td><%= article.publisher %></td>
         <td><%= article.address %></td>
       </tr>

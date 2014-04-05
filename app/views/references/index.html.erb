@@ -1,26 +1,32 @@
 <h1>Listing references</h1>
 
-<table class="table table-striped" class="table table-hover">
+<table class="table table-hover">
   <thead>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Year</th>
-  </tr>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Year</th>
+      <th></th>
+    </tr>
   </thead>
 
   <tbody>
-  <% @references.each do |referencetype| %>
-    <% referencetype.each do |reference| %>
+    <% @references.each do |reference| %>
       <tr>
-        <!-- Every reference type seems to have at least these three attributes -->
         <td><%= link_to reference.title, reference %></td>
-        <td><%= reference.author %></td>
+        <td><%= reference.authors_to_s %></td>
         <td><%= reference.year %></td>
+        <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
+        <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  <% end %>
   </tbody>
 </table>
 
-<p>Number of references: <%= @amount %></p>
+<br>
+<p>
+  <%= link_to 'New Article', 'new_article' %><br>
+  <%= link_to 'New Book', 'new_book' %><br>
+  <%= link_to 'New Inproceeding', 'new_inproceeding' %>
+</p>
+<p>Number of references: <%= @references.size %></p>
