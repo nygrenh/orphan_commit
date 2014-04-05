@@ -1,23 +1,23 @@
 FactoryGirl.define do
 
   factory :reference_article, class: Reference do
-    reference_type {FactoryGirl.create(:reference_type_article)}
+    association :reference_type, factory: :reference_type_article
     title "Ruby on Rails basics"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 2005
   end
 
   factory :reference_article2, class: Reference do
-    reference_type {FactoryGirl.create(:reference_type_article)}
+    association :reference_type, factory: :reference_type_article
     title "Intro to Intros"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 1993
   end
 
   factory :reference_article3, class: Reference do
-    reference_type {FactoryGirl.create(:reference_type_article)}
+    association :reference_type, factory: :reference_type_article
     title "How to asd"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 2004
   end
 
