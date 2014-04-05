@@ -15,12 +15,10 @@ describe "References page" do
     end
 
     it "shows that references detail" do
-      pending
       expect(page).to have_content 'Pekan kuvakirja'
     end
 
     it "shows the correct total number of references" do
-      pending
       expect(page).to have_content 'Number of references: 1'
     end
   end
@@ -38,7 +36,6 @@ describe "References page" do
     end
 
     it "shows the details of those references" do
-      pending
       @titles.each do |title|
         expect(page).to have_content title
       end
@@ -48,7 +45,6 @@ describe "References page" do
     end
 
     it "shows the correct total number of references" do
-      pending
       expect(page).to have_content 'Number of references: 3'
     end
   end
