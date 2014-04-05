@@ -6,7 +6,7 @@ class Reference < ActiveRecord::Base
   has_many :reference_authors
   has_many :authors, through: :reference_authors
 
-  if :reference_type == ReferenceType.find_by(name: 'article') #toimii, nain saa validationit oikein eri tyypeille
+  if :reference_type == 1 # just a test
     validates :title,         presence: true
     validates :journal_id,    presence: true
     validates :authors,       presence: true
