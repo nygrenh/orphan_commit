@@ -17,8 +17,7 @@ module ApplicationHelper
   def save_authors(authors)
     # kay lapi arrayn authorit ja tee kaikille author.save
     authors.each do |a|
-    	author = author(a)
-    	author.save
+    	a.save #authorit on jo taulussa objekteina?
     end
   end
 
