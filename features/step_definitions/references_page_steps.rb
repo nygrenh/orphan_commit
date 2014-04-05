@@ -6,21 +6,22 @@ require 'article'
 require 'factory_girl'
 
 Given(/^references titled "How to asd", "Intro to Intros", and "Ruby on Rails basics" have been added$/) do
-  FactoryGirl.create(:article, title:"How to asd", author: "Asd Asdington", year: 2004)
-  FactoryGirl.create(:article, title:"Intro to Intros", author: "Herlock Sholmes", year: 1993)
-  FactoryGirl.create(:article, title:"Ruby on Rails basics", author: "David Heinemeier Hansson", year: 2005)
+  FactoryGirl.create(:article2)
+  FactoryGirl.create(:article3)
+  FactoryGirl.create(:article4)
 end
 
 Given(/^references with authors "Asd Asdington", "Herlock Sholmes", and "David Heinemeier Hansson" have been added$/) do
-  FactoryGirl.create(:article, title:"How to asd", author: "Asd Asdington", year: 2004)
-  FactoryGirl.create(:article, title:"Intro to Intros", author: "Herlock Sholmes", year: 1993)
-  FactoryGirl.create(:article, title:"Ruby on Rails basics", author: "David Heinemeier Hansson", year: 2005)
+
+  FactoryGirl.create(:article2)
+  FactoryGirl.create(:article3)
+  FactoryGirl.create(:article4)
 end
 
 Given(/^references published in 2004, 1993, and 2005 have been added$/) do
-  FactoryGirl.create(:article, title:"How to asd", author: "Asd Asdington", year: 2004)
-  FactoryGirl.create(:article, title:"Intro to Intros", author: "Herlock Sholmes", year: 1993)
-  FactoryGirl.create(:article, title:"Ruby on Rails basics", author: "David Heinemeier Hansson", year: 2005)
+  FactoryGirl.create(:article2)
+  FactoryGirl.create(:article3)
+  FactoryGirl.create(:article)
 end
 
 Given(/^no references have been added$/) do
@@ -32,6 +33,7 @@ When(/^I go to the page that lists all the references$/) do
 end
 
 Then(/^I should see the following$/) do |table|
+  pending
   table.raw.each do |row|
     row.each do |content|
       expect(page).to have_content content
