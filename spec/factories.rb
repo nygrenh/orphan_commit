@@ -60,7 +60,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author2
+    association :author, factory: :author2
     journal
   end
 
@@ -71,7 +71,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author3
+    association :author, factory: :author3
     journal
   end
 
@@ -82,7 +82,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author4
+    association :author, factory: :author4
     journal
   end
 
