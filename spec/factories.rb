@@ -1,36 +1,21 @@
 FactoryGirl.define do
 
   factory :reference_article, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author4)}
+    reference_type {FactoryGirl.create(:reference_type_article)}
     title "Ruby on Rails basics"
     journal {FactoryGirl.create(:journal)}
     year 2005
   end
 
   factory :reference_article2, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author3)}
+    reference_type {FactoryGirl.create(:reference_type_article)}
     title "Intro to Intros"
     journal {FactoryGirl.create(:journal)}
     year 1993
   end
 
   factory :reference_article3, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author2)}
+    reference_type {FactoryGirl.create(:reference_type_article)}
     title "How to asd"
     journal {FactoryGirl.create(:journal)}
     year 2004
@@ -111,11 +96,11 @@ FactoryGirl.define do
 
   factory :author3, class: Author do
     name "Herlock Sholmes"
-  end  
+  end
 
   factory :author4, class: Author do
     name "David Heinemeier Hansson"
-  end  
+  end
 
   factory :journal2, class: Journal do
     name "Unscientific American"
