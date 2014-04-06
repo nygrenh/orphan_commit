@@ -1,21 +1,21 @@
 FactoryGirl.define do
 
   factory :reference_article, class: Reference do
-    association :reference_type, factory: :reference_type_article
+    reference_type "Article"
     title "Ruby on Rails basics"
     association :journal, factory: :journal
     year 2005
   end
 
   factory :reference_article2, class: Reference do
-    association :reference_type, factory: :reference_type_article
+    reference_type "Article"
     title "Intro to Intros"
     association :journal, factory: :journal
     year 1993
   end
 
   factory :reference_article3, class: Reference do
-    association :reference_type, factory: :reference_type_article
+    reference_type "Article"
     title "How to asd"
     association :journal, factory: :journal
     year 2004
@@ -28,18 +28,6 @@ FactoryGirl.define do
 
   factory :journal do
     name "Random kokoelmat"
-  end
-
-  factory :reference_type_article, class: ReferenceType do
-    name "Article"
-  end
-
-  factory :reference_type_book, class: ReferenceType do
-    name "Book"
-  end
-
-  factory :reference_type_inproceedings, class: ReferenceType do
-    name "Inproceedings"
   end
 
   factory :article do

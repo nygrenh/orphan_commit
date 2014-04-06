@@ -17,14 +17,16 @@ module ApplicationHelper
   def save_authors(authors)
     # kay lapi arrayn authorit ja tee kaikille author.save
     authors.each do |a|
-    	a.save #authorit on jo taulussa objekteina?
+      author = author(a)
+    	author.save #authorit on jo taulussa objekteina?
     end
   end
 
   def create_reference_author_links(reference, authors)
     # luo reference_authors liitostauluun rivit jossa reference-authors_arrayn_author
     authors.each do |a|
-    	ReferenceAuthor.create reference_id: reference.id, author_id: a.id
+    	author = author(a)
+      reference.authors << author
     end
   end
 
