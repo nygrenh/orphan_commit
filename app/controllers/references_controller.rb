@@ -21,12 +21,15 @@ class ReferencesController < ApplicationController
   end
   def new_article
     @reference = Reference.new
+    @reference.reference_type = ReferenceType.find(1)
   end
   def new_book
     @reference = Reference.new
+    @reference.reference_type = ReferenceType.find(2)
   end
   def new_inproceeding
     @reference = Reference.new
+    @reference.reference_type = ReferenceType.find(3)
   end
 
   # GET /references/1/edit
