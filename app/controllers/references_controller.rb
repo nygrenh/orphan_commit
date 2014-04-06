@@ -1,6 +1,6 @@
 class ReferencesController < ApplicationController
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
-  before_action :set_reference_types, only: [:new, :edit, :create]
+
   include ApplicationHelper
 
   # GET /references
@@ -21,15 +21,15 @@ class ReferencesController < ApplicationController
   end
   def new_article
     @reference = Reference.new
-    @reference.reference_type = ReferenceType.find(1)
+    @reference.reference_type = "Article"
   end
   def new_book
     @reference = Reference.new
-    @reference.reference_type = ReferenceType.find(2)
+    @reference.reference_type = "Book"
   end
   def new_inproceeding
     @reference = Reference.new
-    @reference.reference_type = ReferenceType.find(3)
+    @reference.reference_type = "Inproceeding"
   end
 
   # GET /references/1/edit
@@ -39,7 +39,6 @@ class ReferencesController < ApplicationController
   # POST /references
   # POST /references.json
   def create
-
     journal_attributes = reference_params[:journal]
     publisher_attributes = reference_params[:publisher]
     authors_attributes = reference_params[:authors]
@@ -50,6 +49,9 @@ class ReferencesController < ApplicationController
 
 
     @reference = Reference.new(reference_params.except(:journal, :publisher, :authors))
+    @reference.reference_type = params[:type]
+
+    @reference.authors_present = @authors.empty?
 
     respond_to do |format|
       if @reference.save
@@ -107,11 +109,7 @@ class ReferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reference_params
-      params[:reference].permit(:title, :year, :volume, :number, :pages, :month, :note, :address, :key, journal: [:name], publisher: [:name], authors: [:names])
-    end
-
-    def set_reference_types
-      @reference_types = ReferenceType.all
+      params[:reference].permit(:title, :year, :type, :volume, :number, :pages, :month, :note, :address, :key, journal: [:name], publisher: [:name], authors: [:names])
     end
 
 end
