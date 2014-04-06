@@ -1,38 +1,23 @@
 FactoryGirl.define do
 
   factory :reference_article, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author4)}
+    reference_type "Article"
     title "Ruby on Rails basics"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 2005
   end
 
   factory :reference_article2, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author3)}
+    reference_type "Article"
     title "Intro to Intros"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 1993
   end
 
   factory :reference_article3, class: Reference do
-    if (ReferenceType.find_by(name: 'article').nil?)
-      reference_type {FactoryGirl.create(:reference_type_article)}
-    else
-      reference_type ReferenceType.find_by(name: 'Article')
-    end
-    #author {FactoryGirl.create(:author2)}
+    reference_type "Article"
     title "How to asd"
-    journal {FactoryGirl.create(:journal)}
+    association :journal, factory: :journal
     year 2004
   end
 
@@ -43,18 +28,6 @@ FactoryGirl.define do
 
   factory :journal do
     name "Random kokoelmat"
-  end
-
-  factory :reference_type_article, class: ReferenceType do
-    name "Article"
-  end
-
-  factory :reference_type_book, class: ReferenceType do
-    name "Book"
-  end
-
-  factory :reference_type_inproceedings, class: ReferenceType do
-    name "Inproceedings"
   end
 
   factory :article do
@@ -75,7 +48,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author2
+    association :author, factory: :author2
     journal
   end
 
@@ -86,7 +59,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author3
+    association :author, factory: :author3
     journal
   end
 
@@ -97,7 +70,7 @@ FactoryGirl.define do
     number 3
     key "PK"
     pages "2-5"
-    author :author4
+    association :author, factory: :author4
     journal
   end
 
@@ -111,11 +84,11 @@ FactoryGirl.define do
 
   factory :author3, class: Author do
     name "Herlock Sholmes"
-  end  
+  end
 
   factory :author4, class: Author do
     name "David Heinemeier Hansson"
-  end  
+  end
 
   factory :journal2, class: Journal do
     name "Unscientific American"

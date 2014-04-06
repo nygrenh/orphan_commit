@@ -6,8 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#article = ReferenceType.create name:'article'
-#book = ReferenceType.create name:'book'
+article = ReferenceType.create name:'article'
+book = ReferenceType.create name:'book'
+inproceedings = ReferenceType.create name:'inproceedings'
 #
 #author = Author.create name:'Bob'
 #author2 = Author.create name:'John'

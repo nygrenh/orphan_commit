@@ -12,7 +12,7 @@
   <% end %>
 
 
-    <h4>Required fields MUUTA NAMA SOPIMAAN BOOKIIN</h4>
+    <h4>Required fields</h4>
 
     <div class="field">
       <%= f.label :title %><br>
@@ -23,18 +23,28 @@
       <%= f.number_field :year %>
     </div>
     <div class="field">
-    <%= f.fields_for :journal do |g| %>
-        <%= g.label :journal %><br />
-        <%= g.text_field :name %><br />
-    <% end %>
-    </div>
-    <div class="field">
     <%= f.fields_for :authors do |g| %>
         <%= g.label :authors %><br />
         <%= g.text_field :names %><br />
     <% end %>
     </div>
+    <div class="field">
+      <%= f.fields_for :publisher do |g| %>
+          <%= g.label :publisher %><br />
+          <%= g.text_field :name %><br />
+      <% end %>
+    </div>
     <h4>Optional fields</h4>
+    <div class="field">
+      <%= f.fields_for :editors do |g| %>
+          <%= g.label :editors %><br />
+          <%= g.text_field :names %><br />
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :edition %><br>
+      <%= f.text_field :edition %>
+    </div>
     <div class="field">
       <%= f.label :volume %><br>
       <%= f.number_field :volume %>
@@ -44,8 +54,8 @@
       <%= f.number_field :number %>
     </div>
     <div class="field">
-      <%= f.label :pages %><br>
-      <%= f.text_field :pages %>
+      <%= f.label :series %><br>
+      <%= f.text_field :series %>
     </div>
     <div class="field">
       <%= f.label :month %><br>
@@ -54,12 +64,6 @@
     <div class="field">
       <%= f.label :note %><br>
       <%= f.text_field :note %>
-    </div>
-    <div class="field">
-      <%= f.fields_for :publisher do |g| %>
-          <%= g.label :publisher %><br />
-          <%= g.text_field :name %><br />
-      <% end %>
     </div>
     <div class="field">
       <%= f.label :address %><br>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405165143) do
+ActiveRecord::Schema.define(version: 20140406060545) do
 
   create_table "articles", force: true do |t|
     t.string   "key"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 20140405165143) do
     t.datetime "updated_at"
   end
 
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "publishers", force: true do |t|
     t.string   "name"
     t.integer  "reference_id"
@@ -56,15 +62,7 @@ ActiveRecord::Schema.define(version: 20140405165143) do
     t.datetime "updated_at"
   end
 
-  create_table "reference_types", force: true do |t|
-    t.string   "name"
-    t.integer  "reference_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "references", force: true do |t|
-    t.integer  "reference_type_id"
     t.integer  "journal_id"
     t.string   "title"
     t.integer  "year"
@@ -76,6 +74,15 @@ ActiveRecord::Schema.define(version: 20140405165143) do
     t.string   "key"
     t.integer  "publisher_id"
     t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "edition"
+    t.string   "booktitle"
+    t.string   "reference_type"
+  end
+
+  create_table "series", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
