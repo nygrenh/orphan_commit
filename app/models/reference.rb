@@ -2,9 +2,12 @@ class Reference < ActiveRecord::Base
   belongs_to :journal
   belongs_to :reference_type
   belongs_to :publisher
+  belongs_to :series
+  belongs_to :organization
 
   has_many :reference_authors
   has_many :authors, through: :reference_authors
+  has_many :editors, through: :reference_authors
 
   if :reference_type == 1 # just a test
     validates :title,         presence: true
