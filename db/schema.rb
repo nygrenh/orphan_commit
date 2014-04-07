@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406060545) do
+ActiveRecord::Schema.define(version: 20140407174519) do
 
   create_table "articles", force: true do |t|
     t.string   "key"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20140406060545) do
 
   create_table "publishers", force: true do |t|
     t.string   "name"
-    t.integer  "reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +57,13 @@ ActiveRecord::Schema.define(version: 20140406060545) do
   create_table "reference_authors", force: true do |t|
     t.integer  "author_id"
     t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reference_editors", force: true do |t|
+    t.integer  "reference_id"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
