@@ -16,7 +16,6 @@
         <td><%= link_to reference.title, reference %></td>
         <td><%= reference.authors_to_s %></td>
         <td><%= reference.year %></td>
-        <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
         <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -26,5 +25,8 @@
 <br>
 <p>
   <%= link_to 'New Reference', new_reference_path %><br>
+  <%= link_to 'New Article', 'new_article' %><br>
+  <%= link_to 'New Book', 'new_book' %><br>
+  <%= link_to 'New Inproceeding', 'new_inproceeding' %><br>
 </p>
 <p>Number of references: <%= @references.size %></p>

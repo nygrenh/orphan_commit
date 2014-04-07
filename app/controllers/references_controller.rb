@@ -68,7 +68,7 @@ class ReferencesController < ApplicationController
         format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reference }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new' } #pitää saada ohjaamaan virheen jälkeen oikeaan new methodiin, esim new_article, new_book jne
         format.json { render json: @reference.errors, status: :unprocessable_entity }
       end
     end
