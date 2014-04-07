@@ -3,6 +3,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Reference Type</th>
       <th>Title</th>
       <th>Authors</th>
       <th>Year</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @references.each do |reference| %>
       <tr>
+        <td><%= reference.reference_type %></td>
         <td><%= link_to reference.title, reference %></td>
         <td><%= reference.authors_to_s %></td>
         <td><%= reference.year %></td>
@@ -24,7 +26,6 @@
 
 <br>
 <p>
-  <%= link_to 'New Reference', new_reference_path %><br>
   <%= link_to 'New Article', 'new_article' %><br>
   <%= link_to 'New Book', 'new_book' %><br>
   <%= link_to 'New Inproceeding', 'new_inproceeding' %><br>

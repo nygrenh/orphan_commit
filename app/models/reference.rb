@@ -1,12 +1,15 @@
 class Reference < ActiveRecord::Base
+
   belongs_to :journal
+
   belongs_to :publisher
   belongs_to :series
   belongs_to :organization
 
   has_many :reference_authors
+  has_many :reference_editors
   has_many :authors, through: :reference_authors
-  has_many :editors, through: :reference_authors
+  has_many :editors, through: :reference_editors, source: :author
 
   validate :reference_specific_validtions
 
@@ -25,8 +28,11 @@ class Reference < ActiveRecord::Base
   validates :number,        allow_blank: true,
                             numericality: {only_integer: true,
                                            greater_than_or_equal_to: 1}
+
   
   attr_accessor :authors_present
+  attr_accessor :editors_present
+
 
   def authors_to_s
     all_authors = ''
@@ -39,6 +45,18 @@ class Reference < ActiveRecord::Base
     end
     return all_authors
   end
+  def editors_to_s
+    all_editors = ''
+    self.editors.each_with_index do |editor, i|
+      if i == 0
+        all_editors += editor.name.to_s
+      else
+        all_editors += ', ' + editor.name.to_s
+      end
+    end
+    return all_editors
+  end
+
 
   def reference_specific_validtions
     if field_should_be_validated?("title")
@@ -47,17 +65,23 @@ class Reference < ActiveRecord::Base
       end
     end
 
-    if field_should_be_validated?("journal_id")
-      if journal_id.nil? and false # journals aren't working atm
-        errors.add :journal_id, "can't be empty"
+    if field_should_be_validated?("journal")
+      unless journal.present?
+        errors[:base] << "Journal can't be empty"
       end
     end
 
     if field_should_be_validated?("authors")
-      if authors_present
+      unless authors_present
         errors.add :authors, "can't be empty"
       end
-    end 
+    end
+
+    if field_should_be_validated?("editors")
+      unless editors_present
+        errors.add :editors, "can't be empty"
+      end
+    end
 
     if field_should_be_validated?("year")
       unless year.present?
@@ -65,9 +89,15 @@ class Reference < ActiveRecord::Base
       end
     end
 
+    if field_should_be_validated?("booktitle")
+      unless booktitle.present?
+        errors.add :booktitle, "can't be empty"
+      end
+    end
+
     if field_should_be_validated?("publisher")
       unless publisher.present?
-        errors.add :publisher, "can't be empty"
+        errors[:base] << "Publisher can't be empty"
       end
     end 
 
@@ -76,13 +106,13 @@ class Reference < ActiveRecord::Base
   def field_should_be_validated?(field)
     array = []
     if reference_type == "Article"
-      array = ["title", "journal_id", "authors", "year"]
+      array = ["title", "journal", "authors", "year"]
     end
     if reference_type == "Book"
-      array = ["author", "title", "publisher", "year"]
+      array = ["authors", "title", "publisher", "year"]
     end
     if reference_type == "Inproceeding"
-      array = ["author", "title", "year"] # TODO: add booktitle
+      array = ["authors", "title", "year", "booktitle"]
     end
     array.include?(field)
   end
