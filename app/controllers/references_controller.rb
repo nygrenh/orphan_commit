@@ -63,40 +63,29 @@ class ReferencesController < ApplicationController
       end
     end
 
-    if not reference_params[:authors].blank?
-      authors_attributes = reference_params[:authors]
-      if authors_attributes[:names].blank?
-        authors_present = false
-      else
-        @authors = self.init_or_find_authors(authors_attributes) #metodin runko on helpers/application_helper -tiedostossa
-        authors_present = true
-      end
+    authors_attributes = reference_params[:authors]
+    if not authors_attributes.blank?
+      @authors = self.init_or_find_authors(authors_attributes) #metodin runko on helpers/application_helper -tiedostossa
     end
 
-    if not reference_params[:editors].blank?
-      editors_attributes = reference_params[:editors]
-      if editors_attributes[:names].blank?
-        editors_present = false
-      else
-        @editors = self.init_or_find_authors(editors_attributes) #authors ja editors samassa taulussa
-        editors_present = true
-      end
+    editors_attributes = reference_params[:editors]
+    if not editors_attributes.blank?
+      @editors = self.init_or_find_authors(editors_attributes) #authors ja editors samassa taulussa
     end
-
 
     @reference = Reference.new(reference_params.except(:journal, :publisher, :authors, :editors, :form_path))
 
-    @reference.publisher_present = publisher_present
-    @reference.journal_present = journal_present
-    @reference.authors_present = authors_present
-    @reference.editors_present = editors_present
+    @reference.publisher = @publisher
+    @reference.journal = @journal
+    @reference.authors_present = !@authors.blank?
+    @reference.editors_present = !@editors.blank?
 
     respond_to do |format|
       if @reference.save
 
         if journal_present
           @journal.save
-          @reference.update(journal_id: @journal.id) # validationit vois toimia eritavalla jos naa liittaisi referenceen ennen talletusta
+          @reference.update(journal_id: @journal.id)
         end
 
         if publisher_present
@@ -104,15 +93,17 @@ class ReferencesController < ApplicationController
           @reference.update(publisher_id: @publisher.id)
         end
 
-        if authors_present
+
+        if @reference.authors_present
           self.save_authors(@authors)
           self.create_reference_author_links(@reference, @authors)
         end
 
-        if editors_present
+        if @reference.editors_present
           self.save_authors(@editors)
           self.create_reference_editor_links(@reference, @editors)
         end
+
 
         format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reference }

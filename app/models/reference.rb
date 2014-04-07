@@ -32,8 +32,7 @@ class Reference < ActiveRecord::Base
   
   attr_accessor :authors_present
   attr_accessor :editors_present
-  attr_accessor :journal_present
-  attr_accessor :publisher_present
+
 
   def authors_to_s
     all_authors = ''
@@ -67,7 +66,7 @@ class Reference < ActiveRecord::Base
     end
 
     if field_should_be_validated?("journal")
-      unless journal_present
+      unless journal.present?
         errors[:base] << "Journal can't be empty"
       end
     end
@@ -97,7 +96,7 @@ class Reference < ActiveRecord::Base
     end
 
     if field_should_be_validated?("publisher")
-      unless publisher_present
+      unless publisher.present?
         errors[:base] << "Publisher can't be empty"
       end
     end 

@@ -3,8 +3,8 @@ module ApplicationHelper
 
   def init_or_find_authors(authors_attributes) #refactoraa nimeamiset "people"
     # parseaa :names attribuutista authorit, tee array jossa on authorit joka loydettyna db:sta tai initialisoituina
-  	if authors_attributes[:names].nil?
-        return
+    if authors_attributes[:names].nil?
+      return
     end
     authors = authors_attributes[:names].split(', ')
     array = Array.new
@@ -19,7 +19,7 @@ module ApplicationHelper
     # kay lapi arrayn authorit ja tee kaikille author.save
 
     authors.each do |a|
-    	a.save #authorit on jo taulussa objekteina?
+      a.save #authorit on jo taulussa objekteina?
     end
   end
 
@@ -40,11 +40,11 @@ module ApplicationHelper
   private
 
   def author(name) #refactoraa nimeamiset "people"
-  	author = Author.where("lower(name) = ?", name.downcase).first
-  	if author.nil?
-  		author = Author.new name:name
-  	end
-  	author
+    author = Author.where("lower(name) = ?", name.downcase).first
+    if author.nil?
+      author = Author.new name: name
+    end
+    author
   end
 
 end
