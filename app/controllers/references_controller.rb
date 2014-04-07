@@ -96,7 +96,7 @@ class ReferencesController < ApplicationController
 
         if journal_present
           @journal.save
-          @reference.update(journal_id: @journal.id)
+          @reference.update(journal_id: @journal.id) # validationit vois toimia eritavalla jos naa liittaisi referenceen ennen talletusta
         end
 
         if publisher_present
