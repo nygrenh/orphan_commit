@@ -2,7 +2,8 @@
 begin require 'rspec/expectations'; rescue LoadError; require 'spec/expectations'; end
 require 'cucumber/formatter/unicode'
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'article'
+
+
 
 Given(/^I am on new book reference page$/) do
   visit new_book_path
