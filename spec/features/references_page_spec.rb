@@ -9,15 +9,13 @@ describe "References page" do
 
   describe "when a single reference is added" do
     before :each do
-      FactoryGirl.create(:article)
+      FactoryGirl.create(:reference_article)
 
       visit references_path
     end
 
     it "shows that references detail" do
-      expect(page).to have_content 'Pekka'
-      expect(page).to have_content 'Pekan kuvakirja'
-      expect(page).to have_content '2013'
+      expect(page).to have_content 'Ruby on Rails basics'
     end
 
     it "shows the correct total number of references" do
@@ -30,7 +28,7 @@ describe "References page" do
       @titles = ["Pekan kuvakirja", "Penan piirrokset", "Ripan raapustukset"]
       year = 2001
       @titles.each do |title|
-        FactoryGirl.create(:article, title: title, year: year, author: "Anonymous")
+        FactoryGirl.create(:reference_article, title: title, year: year)
         year += 1
       end
 
@@ -44,7 +42,6 @@ describe "References page" do
       expect(page).to have_content '2001'
       expect(page).to have_content '2002'
       expect(page).to have_content '2003'
-      expect(page).to have_content 'Anonymous'
     end
 
     it "shows the correct total number of references" do

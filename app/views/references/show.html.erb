@@ -2,22 +2,20 @@
 
 <div>
 
-  Key: <%= @reference.key %><br>
-  Authors: <%= @reference.authors_to_s %><br>
-  Title: <%= @reference.title %><br>
-  Journal: <%= @reference.journal.name %><br>
-  Volume: <%= @reference.volume %><br>
-  Number: <%= @reference.number %><br>
-  Year: <%= @reference.year %><br>
-  Pages: <%= @reference.pages %><br>
-  Month: <%= @reference.month %><br>
-  Note: <%= @reference.note %><br>
-  Publisher: <%= @reference.publisher.name %><br>
-  Address: <%= @reference.address %><br>
+  Key: <%= @reference.key if @reference.key %><br>
+  Authors: <%= @reference.authors_to_s if @reference.authors %><br>
+  Title: <%= @reference.title if @reference.title %><br>
+  Journal: <%= @reference.journal.name if @reference.journal %><br>
+  Volume: <%= @reference.volume if @reference.volume %><br>
+  Number: <%= @reference.number if @reference.number %><br>
+  Year: <%= @reference.year if @reference.year %><br>
+  Pages: <%= @reference.pages if @reference.pages %><br>
+  Month: <%= @reference.month if @reference.month %><br>
+  Note: <%= @reference.note if @reference.note %><br>
+  Publisher: <%= @reference.publisher.name if @reference.publisher %><br>
+  Address: <%= @reference.address if @reference.address %><br>
 
 </div>
 
 
-
-  <%= link_to 'Edit', edit_reference_path(@reference) %> |
   <%= link_to 'Back', references_path %>
