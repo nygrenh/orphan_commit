@@ -13,6 +13,6 @@ Feature: Book reference
   Scenario: User cannot create a reference
     Given I am on new book reference page
     And I do not fill in all the fields with correct values
-    When I press "Create Reference"
+    When I press button "Create Reference"
     Then the page should have message: "prohibited this reference from being saved"
     And the reference should not be saved in the database
