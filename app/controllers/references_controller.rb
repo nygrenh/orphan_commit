@@ -43,7 +43,9 @@ class ReferencesController < ApplicationController
     publisher_attributes = reference_params[:publisher]
     authors_attributes = reference_params[:authors]
 
-    @journal = Journal.find_or_initialize_by_name(journal_attributes[:name])
+    unless journal_attributes.nil?
+      @journal = Journal.find_or_initialize_by_name(journal_attributes[:name])
+    end
     @publisher = Publisher.find_or_initialize_by_name(publisher_attributes[:name])
     @authors = self.init_or_find_authors(authors_attributes) #metodin runko on helpers/application_helper -tiedostossa
 
@@ -55,14 +57,17 @@ class ReferencesController < ApplicationController
 
     respond_to do |format|
       if @reference.save
-
-        @journal.save
+        unless journal_attributes.nil?
+          @journal.save
+        end
         @publisher.save
         self.save_authors(@authors)
 
         self.create_reference_author_links(@reference, @authors)
 
-        @reference.update(journal_id: @journal.id)
+        unless journal_attributes.nil?
+          @reference.update(journal_id: @journal.id)
+        end
         @reference.update(publisher_id: @publisher.id)
 
         format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
