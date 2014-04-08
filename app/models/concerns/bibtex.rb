@@ -1,10 +1,18 @@
 module Bibtex
   extend ActiveSupport::Concern
 
+  def random_key()
+    string = rand(36**4).to_s(36)
+    while Reference.find_by_key(string).nil? == false
+      string = rand(36**4).to_s(36)
+    end
+    return string.upcase
+  end
+
   def generate_bibtex()
     bibtex = "@" + reference_type + "{"
     if key == ""
-      bibtex += "\n"
+      bibtex += special_chars(random_key()) + ",\n"
     else
       bibtex += special_chars(key) + ",\n"
     end
@@ -38,6 +46,6 @@ module Bibtex
   end
 
   def special_chars(string)
-    string = string.gsub(/[åäö]/, 'å' => '\aa', 'ä' => '\"{a}', 'ö' => '\"{o}')
+    string = string.gsub(/[åäöÅÄÖ]/, 'å' => '\aa', 'ä' => '\"{a}', 'ö' => '\"{o}', 'Å' => '\AA', 'Ä' => '\"{A}', 'Ö' => '\"{O}')
   end
 end
