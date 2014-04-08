@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe ArticlesController do
@@ -28,14 +29,6 @@ describe ArticlesController do
     end
   end
 
-=begin
-  describe "GET new" do
-    it "assigns a new article as @article" do
-      get :new, {}, valid_session
-      assigns(:article).should be_a_new(Article)
-    end
-  end
-=end
 
   describe "GET edit" do
     it "assigns the requested article as @article" do
@@ -151,3 +144,4 @@ describe ArticlesController do
   end
 
 end
+=end
