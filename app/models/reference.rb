@@ -72,7 +72,7 @@ class Reference < ActiveRecord::Base
     end
 
     if field_should_be_validated?("authors")
-      unless authors_present
+      if !authors_present and false
         errors.add :authors, "can't be empty"
       end
     end

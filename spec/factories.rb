@@ -1,7 +1,6 @@
 FactoryGirl.define do
 
   factory :reference_article, class: Reference do
-    id 1
     reference_type "Article"
     title "Ruby on Rails basics"
     association :journal, factory: :journal
@@ -9,7 +8,6 @@ FactoryGirl.define do
   end
 
   factory :reference_article2, class: Reference do
-    id 2
     reference_type "Article"
     title "Intro to Intros"
     association :journal, factory: :journal
@@ -17,7 +15,6 @@ FactoryGirl.define do
   end
 
   factory :reference_article3, class: Reference do
-    id 3
     reference_type "Article"
     title "How to asd"
     association :journal, factory: :journal
@@ -96,5 +93,4 @@ FactoryGirl.define do
   factory :journal2, class: Journal do
     name "Unscientific American"
   end
-
 end
