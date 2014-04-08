@@ -5,7 +5,9 @@ describe ReferencesController do
   # This should return the minimal set of attributes required to create a valid
   # Reference. As you add validations to Reference, be sure to
   # adjust the attributes here as well.
+
   let(:valid_attributes) { { year: 2002 } }
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -46,21 +48,27 @@ describe ReferencesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Reference" do
+
         pending
+
         expect {
           post :create, {:reference => valid_attributes}, valid_session
         }.to change(Reference, :count).by(1)
       end
 
       it "assigns a newly created reference as @reference" do
+
         pending
+
         post :create, {:reference => valid_attributes}, valid_session
         assigns(:reference).should be_a(Reference)
         assigns(:reference).should be_persisted
       end
 
       it "redirects to the created reference" do
+
         pending
+
         post :create, {:reference => valid_attributes}, valid_session
         response.should redirect_to(Reference.last)
       end
@@ -68,7 +76,9 @@ describe ReferencesController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved reference as @reference" do
+
         pending
+
         # Trigger the behavior that occurs when invalid params are submitted
         Reference.any_instance.stub(:save).and_return(false)
         post :create, {:reference => {  }}, valid_session
@@ -76,7 +86,9 @@ describe ReferencesController do
       end
 
       it "re-renders the 'new' template" do
+
         pending
+
         # Trigger the behavior that occurs when invalid params are submitted
         Reference.any_instance.stub(:save).and_return(false)
         post :create, {:reference => {  }}, valid_session
@@ -88,7 +100,9 @@ describe ReferencesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested reference" do
+
         pending
+
         reference = Reference.create! valid_attributes
         # Assuming there are no other references in the database, this
         # specifies that the Reference created on the previous line

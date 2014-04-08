@@ -48,21 +48,27 @@ describe ArticlesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Article" do
+
         pending
+
         expect {
           post :create, {:article => valid_attributes}, valid_session
         }.to change(Article, :count).by(1)
       end
 
       it "assigns a newly created article as @article" do
+
         pending
+
         post :create, {:article => valid_attributes}, valid_session
         assigns(:article).should be_a(Article)
         assigns(:article).should be_persisted
       end
 
       it "redirects to the created article" do
+
         pending
+
         post :create, {:article => valid_attributes}, valid_session
         response.should redirect_to(Article.last)
       end

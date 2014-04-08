@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20140407185754) do
 
   create_table "publishers", force: true do |t|
     t.string   "name"
-    t.integer  "reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +57,13 @@ ActiveRecord::Schema.define(version: 20140407185754) do
   create_table "reference_authors", force: true do |t|
     t.integer  "author_id"
     t.integer  "reference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reference_editors", force: true do |t|
+    t.integer  "reference_id"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
