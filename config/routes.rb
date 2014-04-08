@@ -1,6 +1,6 @@
 OrphanCommit::Application.routes.draw do
 
-  resources :articles, except: :new
+
   resources :references
 
   get 'new_article', to:'references#new_article'
