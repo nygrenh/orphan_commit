@@ -46,6 +46,6 @@ module Bibtex
   end
 
   def special_chars(string)
-    string = string.gsub(/[åäö]/, 'å' => '\aa', 'ä' => '\"{a}', 'ö' => '\"{o}')
+    string = string.gsub(/[åäöÅÄÖ]/, 'å' => '\aa', 'ä' => '\"{a}', 'ö' => '\"{o}', 'Å' => '\AA', 'Ä' => '\"{A}', 'Ö' => '\"{O}')
   end
 end
