@@ -1,0 +1,8 @@
+<h1>Bibtex for all the references</h1>
+
+<strong>Bibtex:</strong><br>
+<textarea cols="100" rows="100" readonly>
+<% @references.each do |reference| %>
+<%= reference.generate_bibtex() + "\n" %>
+<% end %>
+</textarea>
