@@ -60,22 +60,6 @@ Feature: Bibtex page
       | }|
     And the page should have message "Bibtex for all the references"
 
-#  Scenario: User can see the authors of the references
-#    Given references with authors "Asd Asdington", "Herlock Sholmes", and "David Heinemeier Hansson" have been added
-#    When I go to the page that lists all the references
-#    Then I should see the following
-#      | Asd Asdington |
-#      | Herlock Sholmes |
-#      | David Heinemeier Hansson |
-#
-#  Scenario: User can see the years of the references
-#    Given references published in 2004, 1993, and 2005 have been added
-#    When I go to the page that lists all the references
-#    Then I should see the following
-#      | 2004 |
-#      | 1993 |
-#      | 2005 |
-#
   Scenario: No bibtex-references are shown if there are none
     Given no references of any form have been added
     When I go to the page that shows bibtex-file
