@@ -1,4 +1,5 @@
 class Reference < ActiveRecord::Base
+  include Bibtex
 
   belongs_to :journal
 
