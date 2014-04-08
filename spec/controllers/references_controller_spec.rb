@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe ReferencesController do
@@ -160,3 +161,4 @@ describe ReferencesController do
   end
 
 end
+=end

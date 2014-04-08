@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+=begin
 describe "References" do
   describe "GET /references" do
     it "works! (now write some real specs)" do
@@ -9,3 +10,4 @@ describe "References" do
     end
   end
 end
+=end

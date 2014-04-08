@@ -12,7 +12,7 @@ class Reference < ActiveRecord::Base
   has_many :authors, through: :reference_authors
   has_many :editors, through: :reference_editors, source: :author
 
-  validate :reference_specific_validtions
+  validate :reference_specific_validations
 
   # if reference_type("Article")
 
@@ -59,7 +59,7 @@ class Reference < ActiveRecord::Base
   end
 
 
-  def reference_specific_validtions
+  def reference_specific_validations
     if field_should_be_validated?("title")
       unless title.present?
         errors.add :title, "can't be empty"

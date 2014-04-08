@@ -5,6 +5,7 @@ FactoryGirl.define do
     title "Ruby on Rails basics"
     association :journal, factory: :journal
     year 2005
+
   end
 
   factory :reference_article2, class: Reference do
@@ -29,6 +30,38 @@ FactoryGirl.define do
   factory :reference_editor do
     author_id 1
     reference_id 1
+  end
+
+  factory :reference_book, class: Reference do
+    title "Testi"
+    year 2014
+    volume 205
+    edition "1."
+    number 4
+    series_id 1
+    month 4
+    note "Testinote"
+    address "Osoite 1"
+    key "Avain1"
+    association :publisher, factory: :publisher
+    reference_type "Book"
+  end
+
+  factory :reference_inproceeding, class: Reference do
+    title "Testi"
+    year 2014
+    volume 205
+    number 4
+    series_id 1
+    organization_id 4
+    month 4
+    note "Testinote"
+    pages "125--587"
+    address "Osoite 1"
+    booktitle "Otsikko"
+    key "Avain1"
+    association :publisher, factory: :publisher
+    reference_type "Inproceeding"
   end
 
   factory :series do

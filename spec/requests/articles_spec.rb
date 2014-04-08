@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+=begin
 describe "Articles" do
   describe "GET /articles" do
     it "works! (now write some real specs)" do
@@ -9,3 +10,4 @@ describe "Articles" do
     end
   end
 end
+=end
