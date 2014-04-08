@@ -6,7 +6,7 @@ rescue LoadError;
 end
 require 'cucumber/formatter/unicode'
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'article'
+
 require 'factory_girl'
 
 Given(/^references titled "How to asd", "Intro to Intros", and "Ruby on Rails basics" have been added$/) do

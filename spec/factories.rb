@@ -80,50 +80,6 @@ FactoryGirl.define do
     name "Random kokoelmat"
   end
 
-  factory :article do
-    title "Pekan kuvakirja"
-    year 2013
-    volume 5
-    number 3
-    key "PK"
-    pages "2-5"
-    author
-    journal
-  end
-
-  factory :article2, class: Article do
-    title "How to asd"
-    year 2004
-    volume 5
-    number 3
-    key "PK"
-    pages "2-5"
-    association :author, factory: :author2
-    journal
-  end
-
-  factory :article3, class: Article do
-    title "Intro to Intros"
-    year 1993
-    volume 5
-    number 3
-    key "PK"
-    pages "2-5"
-    association :author, factory: :author3
-    journal
-  end
-
-  factory :article4, class: Article do
-    title "Ruby on Rails basics"
-    year 2005
-    volume 5
-    number 3
-    key "PK"
-    pages "2-5"
-    association :author, factory: :author4
-    journal
-  end
-
   factory :author do
     name "Pekka"
   end
