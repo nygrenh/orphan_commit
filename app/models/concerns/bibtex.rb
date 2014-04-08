@@ -1,10 +1,18 @@
 module Bibtex
   extend ActiveSupport::Concern
 
+  def random_key()
+    string = rand(36**5).to_s(36)
+    while Reference.find_by_key(string).nil? == false
+      string = rand(36**5).to_s(36)
+    end
+    return string
+  end
+
   def generate_bibtex()
     bibtex = "@" + reference_type + "{"
     if key == ""
-      bibtex += "\n"
+      bibtex += special_chars(random_key()) + ",\n"
     else
       bibtex += special_chars(key) + ",\n"
     end

@@ -7,6 +7,8 @@ OrphanCommit::Application.routes.draw do
   get 'new_book', to:'references#new_book'
   get 'new_inproceeding', to:'references#new_inproceeding'
 
+  get 'bibtex', to: 'bibtex#index'
+
   root 'references#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
