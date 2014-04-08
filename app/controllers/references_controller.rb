@@ -80,28 +80,30 @@ class ReferencesController < ApplicationController
     @reference.authors_present = !@authors.blank?
     @reference.editors_present = !@editors.blank?
 
-    if journal_present
-      @journal.save
-      @reference.update(journal_id: @journal.id)
-    end
-
-    if publisher_present
-      @publisher.save
-      @reference.update(publisher_id: @publisher.id)
-    end
-
-    if @reference.authors_present
-      self.save_authors(@authors)
-      self.create_reference_author_links(@reference, @authors)
-    end
-
-    if @reference.editors_present
-      self.save_authors(@editors)
-      self.create_reference_editor_links(@reference, @editors)
-    end    
+    
 
     respond_to do |format|
       if @reference.save
+        
+        if journal_present
+          @journal.save
+          @reference.update(journal_id: @journal.id)
+        end
+
+        if publisher_present
+          @publisher.save
+          @reference.update(publisher_id: @publisher.id)
+        end
+
+        if @reference.authors_present
+          self.save_authors(@authors)
+          self.create_reference_author_links(@reference, @authors)
+        end
+
+        if @reference.editors_present
+          self.save_authors(@editors)
+          self.create_reference_editor_links(@reference, @editors)
+        end
 
         format.html { redirect_to @reference, notice: 'Reference was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reference }
@@ -145,7 +147,7 @@ class ReferencesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reference_params
-    params[:reference].permit(:title, :year, :reference_type, :volume, :number, :pages, :month, :note, :address, :key, :booktitle, :form_path, journal: [:name], publisher: [:name], authors: [:names], editors: [:names])
+    params[:reference].permit(:title, :year, :reference_type, :volume, :number, :edition, :series, :pages, :month, :note, :address, :key, :booktitle, :form_path, journal: [:name], publisher: [:name], authors: [:names], editors: [:names])
   end
 
 end
