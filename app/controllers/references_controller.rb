@@ -147,7 +147,7 @@ class ReferencesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reference_params
-    params[:reference].permit(:title, :year, :reference_type, :volume, :number, :edition, :series, :pages, :month, :note, :address, :key, :booktitle, :form_path, journal: [:name], publisher: [:name], authors: [:names], editors: [:names])
+    params[:reference].permit(:title, :year, :reference_type, :volume, :number, :pages, :month, :note, :address, :key, :booktitle, :form_path, journal: [:name], publisher: [:name], authors: [:names], editors: [:names])
   end
 
 end
