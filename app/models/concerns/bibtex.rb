@@ -2,11 +2,11 @@ module Bibtex
   extend ActiveSupport::Concern
 
   def random_key()
-    string = rand(36**5).to_s(36)
+    string = rand(36**4).to_s(36)
     while Reference.find_by_key(string).nil? == false
-      string = rand(36**5).to_s(36)
+      string = rand(36**4).to_s(36)
     end
-    return string
+    return string.upcase
   end
 
   def generate_bibtex()
