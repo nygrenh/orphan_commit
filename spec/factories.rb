@@ -26,7 +26,24 @@ FactoryGirl.define do
     reference_id 1
   end
 
+  factory :reference_editor do
+    author_id 1
+    reference_id 1
+  end
+
+  factory :series do
+      name "Random kokoelmat"
+  end
+
+  factory :organization do
+    name "Random kokoelmat"
+  end
+
   factory :journal do
+    name "Random kokoelmat"
+  end
+
+  factory :publisher do
     name "Random kokoelmat"
   end
 
