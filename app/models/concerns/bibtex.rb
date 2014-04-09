@@ -21,7 +21,7 @@ module Bibtex
       if (index+1 == authors.length)
         bibtex += special_chars(author.name) + "},\n"
       else
-        bibtex += special_chars(author.name) + "and"
+        bibtex += special_chars(author.name) + " and "
       end
     end
     attributes.each_pair do |name, value|

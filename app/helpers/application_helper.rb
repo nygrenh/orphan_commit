@@ -6,7 +6,7 @@ module ApplicationHelper
     if authors_attributes[:names].nil?
       return
     end
-    authors = authors_attributes[:names].split('and')
+    authors = authors_attributes[:names].split(' and ')
     array = Array.new
     authors.each do |a|
       author = author(a)
