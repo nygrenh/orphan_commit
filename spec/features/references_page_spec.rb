@@ -98,11 +98,11 @@ describe "References page" do
       expect(Reference.count).to eq(1)
     end
 
-    it "user can create a new inproceeding reference" do
+    it "user can create a new inproceedings reference" do
 
-      visit new_inproceeding_path
+      visit new_inproceedings_path
 
-      fill_in('reference_title', with: 'Best inproceeding')
+      fill_in('reference_title', with: 'Best inproceedings')
       fill_in('reference_year', with: '2014')
       fill_in('reference_authors_names', with: 'P. Puska & Co.')
       fill_in('reference_booktitle', with: 'Best book')
@@ -175,9 +175,9 @@ describe "References page" do
       expect(Reference.count).to eq(0)
     end
 
-    it "user cannot create a new inproceeding reference" do
+    it "user cannot create a new inproceedings reference" do
 
-      visit new_inproceeding_path
+      visit new_inproceedings_path
 
       fill_in('reference_title', with: '')
       fill_in('reference_year', with: '-2014')

@@ -47,7 +47,7 @@ FactoryGirl.define do
     reference_type "Book"
   end
 
-  factory :reference_inproceeding, class: Reference do
+  factory :reference_inproceedings, class: Reference do
     title "Testi"
     year 2014
     volume 205
@@ -61,7 +61,7 @@ FactoryGirl.define do
     booktitle "Otsikko"
     key "Avain1"
     association :publisher, factory: :publisher
-    reference_type "Inproceeding"
+    reference_type "Inproceedings"
   end
 
   factory :series do

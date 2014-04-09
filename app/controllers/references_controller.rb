@@ -29,9 +29,9 @@ class ReferencesController < ApplicationController
     @reference.reference_type = "Book"
   end
 
-  def new_inproceeding
+  def new_inproceedings
     @reference = Reference.new
-    @reference.reference_type = "Inproceeding"
+    @reference.reference_type = "Inproceedings"
   end
 
   # GET /references/1/edit

@@ -39,13 +39,13 @@ Feature: Bibtex page
       | }|
     And the page should have message "Bibtex for all the references"
 
-  Scenario: User can see inproceeding-reference in bibtex-form
-    Given inproceeding reference has been added
+  Scenario: User can see inproceedings-reference in bibtex-form
+    Given inproceedings reference has been added
     When I go to the page that shows bibtex-file
     Then I should see the following contents
-      | @Inproceeding{1245khhj,|
+      | @Inproceedings{1245khhj,|
       | author = {P. Puska & Co.}, |
-      | title = {Best inproceeding}, |
+      | title = {Best inproceedings}, |
       | year = {2014}, |
       | volume = {250},|
       | number = {3},|
@@ -64,9 +64,9 @@ Feature: Bibtex page
     Given no references of any form have been added
     When I go to the page that shows bibtex-file
     Then I should not see the following contents
-      | @Inproceeding{1245khhj,|
+      | @Inproceedings{1245khhj,|
       | author = {P. Puska & Co.}, |
-      | title = {Best inproceeding}, |
+      | title = {Best inproceedings}, |
       | year = {2014}, |
       | volume = {250},|
       | number = {3},|
@@ -110,9 +110,9 @@ Feature: Bibtex page
     Given one reference of every type has been added
     When I go to the page that shows bibtex-file
     Then I should see the following contents
-      | @Inproceeding{1245khhj,|
+      | @Inproceedings{1245khhj,|
       | author = {P. Puska & Co.}, |
-      | title = {Best inproceeding}, |
+      | title = {Best inproceedings}, |
       | year = {2014}, |
       | volume = {250},|
       | number = {3},|
@@ -125,20 +125,17 @@ Feature: Bibtex page
       | series = {1.},|
       | organization = {Inproceed Org},|
       | }|
-      | @Inproceeding{1245khhj,|
-      | author = {P. Puska & Co.}, |
-      | title = {Best inproceeding}, |
+      | @Book{XTY567, |
+      | author = {P. Puska}, |
+      | title = {Best book}, |
       | year = {2014}, |
-      | volume = {250},|
+      | volume = {250}, |
       | number = {3},|
-      | pages = {125--587},|
       | month = {5},|
       | note = {Remember this},|
-      | publisher = {Publisher first},|
-      | address = {Main Street 5},|
-      | booktitle = {Best book},|
-      | series = {1.},|
-      | organization = {Inproceed Org},|
+      | publisher = {Best publisher},|
+      | address = {Main Street 3},|
+      | series = {IMPORTANT},|
       | }|
       | @Article{fdtgvj863, |
       | author = {P. Parsa}, |

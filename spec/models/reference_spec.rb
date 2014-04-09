@@ -37,12 +37,12 @@ describe Reference do
 
 
 
-  it "has the attributes set correctly if type inproceeding" do
+  it "has the attributes set correctly if type inproceedings" do
     reference = Reference.new title:"Testi", year:2014,volume:205,
                               number:4, series_id: 1, organization_id: 4,
                               month: 4, note: "Testinote", pages: "125--587",
                               address: "Osoite 1", booktitle: "Otsikko",
-                              key: "Avain1", publisher_id: 4, reference_type: "Inproceeding"
+                              key: "Avain1", publisher_id: 4, reference_type: "Inproceedings"
 
     reference.title.should == "Testi"
     reference.booktitle.should == "Otsikko"
@@ -57,18 +57,18 @@ describe Reference do
     reference.address.should == "Osoite 1"
     reference.key.should == "Avain1"
     reference.publisher_id.should == 4
-    reference.reference_type.should == "Inproceeding"
+    reference.reference_type.should == "Inproceedings"
 
 
   end
 
 
-  describe "with correct attributes for inproceeding" do
+  describe "with correct attributes for inproceedings" do
 
-    let!(:reference_inproceeding){FactoryGirl.create(:reference_inproceeding)}
+    let!(:reference_inproceedings){FactoryGirl.create(:reference_inproceedings)}
 
-    it "inproceeding is saved" do
-      expect(reference_inproceeding).to be_valid
+    it "inproceedings is saved" do
+      expect(reference_inproceedings).to be_valid
       expect(Reference.count).to eq(1)
     end
 
@@ -149,36 +149,36 @@ describe Reference do
 
   end
 
-  it "inproceeding not saved without a title" do
+  it "inproceedings not saved without a title" do
     reference = Reference.create title:"", year:2014,volume:205,
                               number:4, series_id: 1, organization_id: 4,
                               month: 4, note: "Testinote", pages: "125--587",
                               address: "Osoite 1", booktitle: "Otsikko",
-                              key: "Avain1", publisher_id: 4, reference_type: "Inproceeding"
+                              key: "Avain1", publisher_id: 4, reference_type: "Inproceedings"
 
     expect(reference).not_to be_valid
     expect(Reference.count).to eq(0)
 
   end
 
-  it "inproceeding not saved without a year" do
+  it "inproceedings not saved without a year" do
     reference = Reference.create title:"Title", volume:205,
                               number:4, series_id: 1, organization_id: 4,
                               month: 4, note: "Testinote", pages: "125--587",
                               address: "Osoite 1", booktitle: "Otsikko",
-                              key: "Avain1", publisher_id: 4, reference_type: "Inproceeding"
+                              key: "Avain1", publisher_id: 4, reference_type: "Inproceedings"
 
     expect(reference).not_to be_valid
     expect(Reference.count).to eq(0)
 
   end
 
-  it "inproceeding not saved without a booktitle" do
+  it "inproceedings not saved without a booktitle" do
     reference = Reference.create title:"Title", year:2014,volume:205,
                               number:4, series_id: 1, organization_id: 4,
                               month: 4, note: "Testinote", pages: "125--587",
                               address: "Osoite 1", booktitle: "",
-                              key: "Avain1", publisher_id: 4, reference_type: "Inproceeding"
+                              key: "Avain1", publisher_id: 4, reference_type: "Inproceedings"
 
     expect(reference).not_to be_valid
     expect(Reference.count).to eq(0)

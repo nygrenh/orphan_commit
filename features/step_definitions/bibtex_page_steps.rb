@@ -44,9 +44,9 @@ Given(/^article reference has been added$/) do
   click_button("Create Reference")
 end
 
-Given(/^inproceeding reference has been added$/) do
-  visit new_inproceeding_path
-  fill_in('reference_title', with: 'Best inproceeding')
+Given(/^inproceedings reference has been added$/) do
+  visit new_inproceedings_path
+  fill_in('reference_title', with: 'Best inproceedings')
   fill_in('reference_year', with: '2014')
   fill_in('reference_authors_names', with: 'P. Puska & Co.')
   fill_in('reference_booktitle', with: 'Best book')
@@ -69,8 +69,8 @@ Given(/^no references of any form have been added$/) do
 end
 
 Given(/^one reference of every type has been added$/) do
-  visit new_inproceeding_path
-  fill_in('reference_title', with: 'Best inproceeding')
+  visit new_inproceedings_path
+  fill_in('reference_title', with: 'Best inproceedings')
   fill_in('reference_year', with: '2014')
   fill_in('reference_authors_names', with: 'P. Puska & Co.')
   fill_in('reference_booktitle', with: 'Best book')
