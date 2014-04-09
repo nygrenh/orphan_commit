@@ -112,7 +112,7 @@ class Reference < ActiveRecord::Base
     if reference_type == "Book"
       array = ["authors", "title", "publisher", "year"]
     end
-    if reference_type == "Inproceeding"
+    if reference_type == "Inproceedings"
       array = ["authors", "title", "year", "booktitle"]
     end
     array.include?(field)

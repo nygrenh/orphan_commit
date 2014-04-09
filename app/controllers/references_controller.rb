@@ -29,14 +29,16 @@ class ReferencesController < ApplicationController
     @reference.reference_type = "Book"
   end
 
-  def new_inproceeding
+  def new_inproceedings
     @reference = Reference.new
-    @reference.reference_type = "Inproceeding"
+    @reference.reference_type = "Inproceedings"
   end
 
   # GET /references/1/edit
+=begin
   def edit
   end
+=end
 
   # POST /references
   # POST /references.json
@@ -125,6 +127,7 @@ class ReferencesController < ApplicationController
 
   # PATCH/PUT /references/1
   # PATCH/PUT /references/1.json
+=begin
   def update
     respond_to do |format|
       if @reference.update(reference_params)
@@ -136,6 +139,7 @@ class ReferencesController < ApplicationController
       end
     end
   end
+=end
 
   # DELETE /references/1
   # DELETE /references/1.json

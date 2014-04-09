@@ -5,12 +5,12 @@ $:.unshift(File.dirname(__FILE__) + '/../../lib')
 
 
 
-Given(/^I am on new inproceeding reference page$/) do
-  visit new_inproceeding_path
+Given(/^I am on new inproceedings reference page$/) do
+  visit new_inproceedings_path
 end
 
 Given(/^I fill in all the fields with the correct values$/) do
-  fill_in('reference_title', with: 'Best inproceeding')
+  fill_in('reference_title', with: 'Best inproceedings')
   fill_in('reference_year', with: '2014')
   fill_in('reference_authors_names', with: 'P. Puska & Co.')
   fill_in('reference_booktitle', with: 'Best book')
@@ -28,7 +28,7 @@ Given(/^I fill in all the fields with the correct values$/) do
 end
 
 Given(/^I do not fill in all the fields with the correct values$/) do
-  fill_in('reference_title', with: 'Best inproceeding')
+  fill_in('reference_title', with: 'Best inproceedings')
   fill_in('reference_year', with: '+2014')
   fill_in('reference_authors_names', with: 'P. Puska & Co.')
   fill_in('reference_booktitle', with: 'Best book')
