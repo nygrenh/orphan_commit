@@ -1,7 +1,7 @@
 OrphanCommit::Application.routes.draw do
 
 
-  resources :references
+  resources :references, except: :edit
 
   get 'new_article', to:'references#new_article'
   get 'new_book', to:'references#new_book'

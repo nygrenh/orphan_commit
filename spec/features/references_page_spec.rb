@@ -203,4 +203,37 @@ describe "References page" do
 
   end
 
+  it "user can delete a reference" do
+
+    visit new_inproceedings_path
+
+    fill_in('reference_title', with: 'Best inproceedings')
+    fill_in('reference_year', with: '2014')
+    fill_in('reference_authors_names', with: 'P. Puska & Co.')
+    fill_in('reference_booktitle', with: 'Best book')
+    fill_in('reference_editors_names', with: 'A. Duck')
+    fill_in('reference_series', with: '1.')
+    fill_in('reference_volume', with: '250')
+    fill_in('reference_number', with: '3')
+    fill_in('reference_pages', with: '125--587')
+    fill_in('reference_month', with: '5')
+    fill_in('reference_note', with: 'Remember this')
+    fill_in('reference_organization', with: 'Inproceed Org')
+    fill_in('reference_publisher_name', with: 'Publisher first')
+    fill_in('reference_address', with: 'Main Street 5')
+    fill_in('reference_key', with: '1245khhj')
+
+    click_button('Create Reference')
+
+
+    visit references_path
+
+    click_link("Destroy")
+
+    expect(page).not_to have_content "Best inproceedings"
+    expect(page).not_to have_content "P. Puska & Co."
+    expect(page).not_to have_content "2014"
+    expect(Reference.count).to eq(0)
+  end
+
 end
