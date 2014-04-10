@@ -60,48 +60,21 @@ class Reference < ActiveRecord::Base
 
 
   def reference_specific_validations
-    if field_should_be_validated?("title")
-      unless title.present?
-        errors.add :title, "can't be empty"
+    validate_field(:title, title)
+    validate_field(:journal, journal)
+    validate_field(:authors, authors, authors_present)
+    validate_field(:editors, editors, editors_present)
+    validate_field(:year, year)
+    validate_field(:booktitle, booktitle)
+    validate_field(:publisher, publisher)
+  end
+
+  def validate_field(attribute, value, present=false)
+    if field_should_be_validated?(attribute.to_s)
+      if not value.present? and not present
+        errors.add attribute, "can't be empty"
       end
     end
-
-    if field_should_be_validated?("journal")
-      unless journal.present?
-        errors[:base] << "Journal can't be empty"
-      end
-    end
-
-    if field_should_be_validated?("authors")
-      if !authors_present and false
-        errors.add :authors, "can't be empty"
-      end
-    end
-
-    if field_should_be_validated?("editors")
-      unless editors_present
-        errors.add :editors, "can't be empty"
-      end
-    end
-
-    if field_should_be_validated?("year")
-      unless year.present?
-        errors.add :year, "can't be empty"
-      end
-    end
-
-    if field_should_be_validated?("booktitle")
-      unless booktitle.present?
-        errors.add :booktitle, "can't be empty"
-      end
-    end
-
-    if field_should_be_validated?("publisher")
-      unless publisher.present?
-        errors[:base] << "Publisher can't be empty"
-      end
-    end 
-
   end
 
   def field_should_be_validated?(field)

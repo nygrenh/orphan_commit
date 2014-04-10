@@ -5,7 +5,12 @@ FactoryGirl.define do
     title "Ruby on Rails basics"
     association :journal, factory: :journal
     year 2005
-
+    ignore do
+        authors_count 1
+    end
+    before(:create) do |reference, evaluator|
+        reference.authors << FactoryGirl.create_list(:author, evaluator.authors_count)
+    end
   end
 
   factory :reference_article2, class: Reference do
@@ -22,12 +27,12 @@ FactoryGirl.define do
     year 2004
   end
 
-  factory :reference_author, class: ReferenceAuthor do
+  factory :reference_editor do
     author_id 1
     reference_id 1
   end
 
-  factory :reference_editor do
+  factory :reference_author, class: ReferenceAuthor do
     author_id 1
     reference_id 1
   end
@@ -45,6 +50,12 @@ FactoryGirl.define do
     key "Avain1"
     association :publisher, factory: :publisher
     reference_type "Book"
+    ignore do
+        authors_count 1
+    end
+    before(:create) do |reference, evaluator|
+        reference.authors << FactoryGirl.create_list(:author, evaluator.authors_count)
+    end
   end
 
   factory :reference_inproceedings, class: Reference do
@@ -62,6 +73,12 @@ FactoryGirl.define do
     key "Avain1"
     association :publisher, factory: :publisher
     reference_type "Inproceedings"
+    ignore do
+        authors_count 1
+    end
+    before(:create) do |reference, evaluator|
+        reference.authors << FactoryGirl.create_list(:author, evaluator.authors_count)
+    end
   end
 
   factory :series do
