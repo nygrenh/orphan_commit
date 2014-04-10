@@ -36,28 +36,12 @@ class Reference < ActiveRecord::Base
 
 
   def authors_to_s
-    all_authors = ''
-    self.authors.each_with_index do |author, i|
-      if i == 0
-        all_authors += author.name.to_s
-      else
-        all_authors += ', ' + author.name.to_s
-      end
-    end
-    return all_authors
-  end
-  def editors_to_s
-    all_editors = ''
-    self.editors.each_with_index do |editor, i|
-      if i == 0
-        all_editors += editor.name.to_s
-      else
-        all_editors += ', ' + editor.name.to_s
-      end
-    end
-    return all_editors
+    authors.to_sentence(last_word_connector: ", ", two_words_connector: ", ")
   end
 
+  def editors_to_s
+    editors.to_sentence(last_word_connector: ", ", two_words_connector: ", ")
+  end
 
   def reference_specific_validations
     validate_field(:title, title)
@@ -78,18 +62,12 @@ class Reference < ActiveRecord::Base
   end
 
   def field_should_be_validated?(field)
-    array = []
-    if reference_type == "Article"
-      array = ["title", "journal", "authors", "year"]
+    required = case reference_type
+    when "Article" then ["title", "journal", "authors", "year"].to_set
+    when "Book" then ["authors", "title", "publisher", "year"].to_set
+    when "Inproceedings" then ["authors", "title", "year", "booktitle"].to_set
+    else Set.new
     end
-    if reference_type == "Book"
-      array = ["authors", "title", "publisher", "year"]
-    end
-    if reference_type == "Inproceedings"
-      array = ["authors", "title", "year", "booktitle"]
-    end
-    array.include?(field)
+    required.include?(field)
   end
-
-
 end
