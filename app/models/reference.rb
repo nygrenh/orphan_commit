@@ -7,8 +7,8 @@ class Reference < ActiveRecord::Base
   belongs_to :series
   belongs_to :organization
 
-  has_many :reference_authors
-  has_many :reference_editors
+  has_many :reference_authors, dependent: :destroy
+  has_many :reference_editors, dependent: :destroy
   has_many :authors, through: :reference_authors
   has_many :editors, through: :reference_editors, source: :author
 
