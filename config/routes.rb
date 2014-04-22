@@ -9,6 +9,8 @@ OrphanCommit::Application.routes.draw do
 
   get 'bibtex', to: 'bibtex#index'
 
+  resources :authors, only: [:show]
+
   root 'references#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
