@@ -1,5 +1,29 @@
 <h1>Listing references</h1>
 
+<div align="right">
+    <% attrs = Array.new %>
+    <% attrs << "author" %>
+    <% Reference.column_names.each do |name| %>
+        <% if name.include? "journal" %>
+            <% attrs << "journal" %>
+        <% elsif name.include? "publisher" %>
+            <% attrs << "publisher" %>
+        <% elsif name.include? "series" %>
+            <% attrs << "series" %>
+        <% elsif name.include? "organization" %>
+            <% attrs << "organization" %>
+        <% elsif name.include? "updated_at" or name.include? "created_at" or name == "id" %>
+        <% else %>
+            <% attrs << name %>
+        <% end %>
+    <% end %>
+    <%= form_tag references_path, :action => 'search', :method => 'get' do %>
+      <strong>Search by </strong>
+      <%= select_tag(:attribute, options_for_select(attrs)) %>
+      <%= text_field_tag :searchtext, params[:searchtext] %>
+      <%= submit_tag "Search" %>
+    <% end %>
+</div>
 <table class="table table-hover">
   <thead>
     <tr>

@@ -7,7 +7,14 @@ class ReferencesController < ApplicationController
   # GET /references
   # GET /references.json
   def index
-    @references = Reference.all
+    if params[:searchtext]
+      @references = Reference.search(params[:attribute], params[:searchtext])
+      if @references.empty?
+        redirect_to references_path, notice: "No references found"
+      end
+    else
+      @references = Reference.all
+    end
   end
 
 
