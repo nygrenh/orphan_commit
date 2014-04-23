@@ -1,5 +1,7 @@
 class ReferencesController < ApplicationController
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
+  before_action :set_new_reference, only: [:new, :new_article, :new_book, :new_inproceedings]
+  before_action :set_tag_s, only: [:new_article, :new_book, :new_inproceedings]
   include ReferencesHelper
 
   # GET /references
@@ -16,25 +18,18 @@ class ReferencesController < ApplicationController
 
   # GET /references/new
   def new
-    @reference = Reference.new
   end
 
   def new_article
-    @reference = Reference.new
     @reference.reference_type = "Article"
-    set_tag_s
   end
 
   def new_book
-    @reference = Reference.new
     @reference.reference_type = "Book"
-    set_tag_s
   end
 
   def new_inproceedings
-    @reference = Reference.new
     @reference.reference_type = "Inproceedings"
-    set_tag_s
   end
 
   # GET /references/1/edit
@@ -102,6 +97,10 @@ class ReferencesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_reference
     @reference = Reference.find(params[:id])
+  end
+
+  def set_new_reference
+    @reference = Reference.new
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
