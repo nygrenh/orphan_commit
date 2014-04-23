@@ -1,0 +1,24 @@
+<h1>Listing series</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @series.each do |series| %>
+      <tr>
+        <td><%= link_to series.name, series %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of series: <%= @series.count %></p>
+

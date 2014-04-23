@@ -1,0 +1,24 @@
+<h1>Listing organizations</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.name, organization %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of organizations: <%= @organizations.count %></p>
+

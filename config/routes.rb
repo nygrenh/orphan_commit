@@ -12,6 +12,8 @@ OrphanCommit::Application.routes.draw do
   resources :authors, only: [:show, :index]
   resources :journals, only: [:show, :index]
   resources :publishers, only: [:show, :index]
+  resources :organizations, only: [:show, :index]
+  resources :series, only: [:show, :index]
 
   root 'references#index'
 
