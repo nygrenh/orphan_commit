@@ -92,6 +92,10 @@ class Reference < ActiveRecord::Base
       @references = Reference.where(id: refs)
     when "title"
       @references = Reference.where('title LIKE ?', "%#{searchtext}%")
+    when "tag"
+      tag = Tag.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
+      refs = ReferenceTag.select('reference_id').where(tag_id: tag)
+      @references = Reference.where(id: refs)
     else
       query = Hash.new
       query[attribute] = searchtext
