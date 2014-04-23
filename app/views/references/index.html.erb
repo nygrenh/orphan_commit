@@ -3,6 +3,7 @@
 <div align="right">
     <% attrs = Array.new %>
     <% attrs << "author" %>
+    <% attrs << "tag" %>
     <% Reference.column_names.each do |name| %>
         <% if name.include? "journal" %>
             <% attrs << "journal" %>
