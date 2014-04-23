@@ -10,6 +10,8 @@ class Reference < ActiveRecord::Base
   has_many :reference_editors, dependent: :destroy
   has_many :authors, through: :reference_authors
   has_many :editors, through: :reference_editors, source: :author
+  has_many :reference_tags
+  has_many :tags, through: :reference_tags
 
   validate :reference_specific_validations
 

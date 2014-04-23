@@ -71,7 +71,10 @@
       <%= f.label :key %><br>
       <%= f.text_field :key %>
     </div>
-
+    <div class="field">
+      <%= f.label :tags %>
+      <%= f.text_area :tags, :value => @tag_s %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>
