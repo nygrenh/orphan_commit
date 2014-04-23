@@ -72,22 +72,25 @@ class Reference < ActiveRecord::Base
   end
 
   def self.search(attribute, searchtext)
-    if (attribute == "journal")
-      journal = Journal.select('id').where('name LIKE ?', searchtext).limit(1)
+    case attribute
+    when "journal"
+      journal = Journal.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
       @references = Reference.where(journal_id: journal)
-    elsif (attribute == "publisher")
-      publisher = Publisher.select('id').where('name LIKE ?', searchtext).limit(1)
+    when "publisher"
+      publisher = Publisher.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
       @references = Reference.where(publisher_id: publisher)
-    elsif (attribute == "series")
-      series = Series.select('id').where('name LIKE ?', searchtext).limit(1)
+    when "series"
+      series = Series.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
       @references = Reference.where(series_id: series)
-    elsif (attribute == "organization")
-      organization = Organization.select('id').where('name LIKE ?', searchtext).limit(1)
+    when "organization"
+      organization = Organization.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
       @references = Reference.where(organization_id: organization)
-    elsif (attribute == "author")
-      author = Author.select('id').where('name LIKE ?', searchtext).limit(1)
+    when "author"
+      author = Author.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
       refs = ReferenceAuthor.select('reference_id').where(author_id: author)
       @references = Reference.where(id: refs)
+    when "title"
+      @references = Reference.where('title LIKE ?', "%#{searchtext}%")
     else
       query = Hash.new
       query[attribute] = searchtext
@@ -95,4 +98,5 @@ class Reference < ActiveRecord::Base
     end
     return @references
   end
+
 end
