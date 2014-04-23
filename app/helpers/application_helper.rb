@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 
-  def init_or_find_authors(authors_attributes) #refactoraa nimeamiset "people"
+  def init_or_find_authors_or_editors(authors_attributes) #refactoraa nimeamiset "people"
     # parseaa :names attribuutista authorit, tee array jossa on authorit joka loydettyna db:sta tai initialisoituina
     if authors_attributes[:names].nil?
       return
@@ -15,7 +15,7 @@ module ApplicationHelper
     return array
   end
 
-  def save_authors(authors) #refactoraa nimeamiset "people"
+  def save_authors_or_editors(authors) #refactoraa nimeamiset "people"
     # kay lapi arrayn authorit ja tee kaikille author.save
 
     authors.each do |a|
