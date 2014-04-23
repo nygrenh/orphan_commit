@@ -1,0 +1,37 @@
+<% if @author.reference_editors.empty? %>
+
+    <p>Author does not have any references as editor!</p>
+
+
+
+<% else %>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th>Reference Type</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Year</th>
+            <th></th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @author.reference_editors.each do |reference_editor| %>
+          <tr>
+            <td><%= reference_editor.reference.reference_type %></td>
+            <td><%= link_to reference_editor.reference.title, reference_editor.reference %></td>
+            <td><%= reference_editor.reference.authors_to_s %></td>
+            <td><%= reference_editor.reference.year %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+<% end %>
+
+
+
