@@ -140,7 +140,7 @@ class ReferencesController < ApplicationController
   end
 
   def attributes_for_search
-    @attrs = ["author", "tag", "reference type", "journal", "publisher", "series", "organization"]
+    @attrs = ["author", "editor", "tag", "reference type", "journal", "publisher", "series", "organization"]
     Reference.column_names.each do |name|
       @attrs << name unless name.include? "_" or name.include? "id"
     end

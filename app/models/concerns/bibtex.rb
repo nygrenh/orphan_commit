@@ -24,6 +24,14 @@ module Bibtex
         bibtex += special_chars(author.name) + " and "
       end
     end
+    bibtex += "editor = {"
+    editors.each_with_index do |editor, index|
+      if (index+1 == editors.length)
+        bibtex += special_chars(editor.name) + "},\n"
+      else
+        bibtex += special_chars(editor.name) + " and "
+      end
+    end
     attributes.each_pair do |name, value|
     unless name == "id" or name == "reference_type" or name == "key" or name == "updated_at" or name == "created_at" or value.nil? or value == ""
       if name.include? "_id"
