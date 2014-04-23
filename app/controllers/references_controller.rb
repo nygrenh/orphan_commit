@@ -1,5 +1,7 @@
 class ReferencesController < ApplicationController
   before_action :set_reference, only: [:show, :edit, :update, :destroy]
+  before_action :set_new_reference, only: [:new, :new_article, :new_book, :new_inproceedings]
+  before_action :set_tag_s, only: [:new_article, :new_book, :new_inproceedings]
   include ReferencesHelper
 
   # GET /references
@@ -16,21 +18,17 @@ class ReferencesController < ApplicationController
 
   # GET /references/new
   def new
-    @reference = Reference.new
   end
 
   def new_article
-    @reference = Reference.new
     @reference.reference_type = "Article"
   end
 
   def new_book
-    @reference = Reference.new
     @reference.reference_type = "Book"
   end
 
   def new_inproceedings
-    @reference = Reference.new
     @reference.reference_type = "Inproceedings"
   end
 
@@ -51,6 +49,8 @@ class ReferencesController < ApplicationController
 
     connect_attributes_to_reference(@reference, ref_attributes)
 
+    update_tags(params[:reference][:tags])
+
     respond_to do |format|
       if @reference.save
 
@@ -70,6 +70,7 @@ class ReferencesController < ApplicationController
   # PATCH/PUT /references/1.json
 =begin
   def update
+    update_tags(params[:reference][:tags])
     respond_to do |format|
       if @reference.update(reference_params)
         format.html { redirect_to @reference, notice: 'Reference was successfully updated.' }
@@ -98,9 +99,36 @@ class ReferencesController < ApplicationController
     @reference = Reference.find(params[:id])
   end
 
+  def set_new_reference
+    @reference = Reference.new
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def reference_params
     params[:reference].permit(:title, :year, :reference_type, :volume, :series, :organization, :number, :pages, :month, :note, :address, :key, :booktitle, :edition, :form_path, journal: [:name], publisher: [:name], authors: [:names], editors: [:names])
+  end
+
+  def update_tags(tagstring)
+    if tagstring.nil?
+      return
+    end
+    tags = tagstring.split(', ')
+    tags.each do |t|
+      tag = tag(t)
+      @reference.tags << tag unless @reference.tags.include? tag
+    end
+  end
+
+  def tag(name)
+    tag = Tag.where("lower(name) = ?", name.downcase).first
+    if tag.nil?
+      tag = Tag.create name:name
+    end
+    tag
+  end
+
+  def set_tag_s
+    @tag_s = @reference.tags.map(&:name).to_sentence(last_word_connector: ", ", two_words_connector: ", ")
   end
 
 end
