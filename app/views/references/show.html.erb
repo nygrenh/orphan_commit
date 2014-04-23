@@ -1,22 +1,77 @@
-<p id="notice"><%= notice %></p>
-
 <div>
 
-  Key: <%= @reference.key if @reference.key %><br>
-  Authors: <%= @reference.authors_to_s if @reference.authors %><br>
-  Editor: <%= @reference.editors_to_s if @reference.editors %><br>
-  Title: <%= @reference.title if @reference.title %><br>
-  Journal: <%= @reference.journal.name if @reference.journal %><br>
-  Volume: <%= @reference.volume if @reference.volume %><br>
-  Number: <%= @reference.number if @reference.number %><br>
-  Year: <%= @reference.year if @reference.year %><br>
-  Pages: <%= @reference.pages if @reference.pages %><br>
-  Month: <%= @reference.month if @reference.month %><br>
-  Note: <%= @reference.note if @reference.note %><br>
-  Publisher: <%= @reference.publisher.name if @reference.publisher %><br>
-  Address: <%= @reference.address if @reference.address %><br>
-  Tags: <%= @reference.tags.map(&:name).to_sentence(last_word_connector: ", ", two_words_connector: ", ") if @reference.tags %><br>
+  <% unless @reference.key.blank? %>
+  <%= "Key: " + @reference.key unless @reference.key.blank? %><br>
+  <% end %>
 
+  <% unless @reference.authors.blank? %>
+  <%= "Authors: " + @reference.authors_to_s  %><br>
+  <% end %>
+
+  <% unless @reference.editors.blank? %>
+  <%= "Editor: " + @reference.editors_to_s %><br>
+  <% end %>
+
+  <% unless @reference.title.blank? %>
+  <%= "Title: " + @reference.title %><br>
+  <% end %>
+
+  <% unless @reference.journal.blank? %>
+  <%= "Journal: " + @reference.journal.name %><br>
+  <% end %>
+
+  <% unless @reference.volume.blank? %>
+  <%= "Volume: " + @reference.volume.to_s %><br>
+  <% end %>
+
+  <% unless @reference.number.blank? %>
+  <%= "Number: " + @reference.number.to_s %><br>
+  <% end %>
+
+  <% unless @reference.booktitle.blank? %>
+  <%= "Booktitle: " + @reference.booktitle %><br>
+  <% end %>
+
+  <% unless @reference.series.blank? %>
+  <%= "Series: " + @reference.series.name %><br>
+  <% end %>
+
+  <% unless @reference.year.blank? %>
+  <%= "Year: " + @reference.year.to_s %><br>
+  <% end %>
+
+  <% unless @reference.pages.blank? %>
+  <%= "Pages: " + @reference.pages %><br>
+  <% end %>
+
+  <%  unless @reference.edition.blank? %>
+  <%= "Edition: " + @reference.edition %><br>
+  <% end %>
+
+  <%  unless @reference.month.blank? %>
+  <%= "Month: " + @reference.month.to_s %><br>
+  <% end %>
+
+  <% unless @reference.note.blank? %>
+  <%= "Note: " + @reference.note unless @reference.note.blank? %><br>
+  <% end %>
+
+  <% unless @reference.publisher.blank? %>
+  <%= "Publisher: " + @reference.publisher.name %><br>
+  <% end %>
+
+  <% unless @reference.organization.blank? %>
+  <%= "Organization: " + @reference.organization.name %><br>
+  <% end %>
+
+  <% unless @reference.address.blank? %>
+  <%= "Address: " + @reference.address %><br>
+  <% end %>
+
+  <% unless @reference.tags.blank? %>
+  <%= "Tags: " + @reference.tags.map(&:name).to_sentence(last_word_connector: ", ", two_words_connector: ", ") %><br>
+  <% end %>
+  <br>
 </div>
 
 <strong>Bibtex:</strong><br>
