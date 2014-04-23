@@ -2,7 +2,6 @@ class Reference < ActiveRecord::Base
   include Bibtex
 
   belongs_to :journal
-
   belongs_to :publisher
   belongs_to :series
   belongs_to :organization
