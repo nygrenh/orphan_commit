@@ -5,11 +5,15 @@ class ReferencesController < ApplicationController
   # GET /references
   # GET /references.json
   def index
-    @references = Reference.all
+    if params[:searchtext]
+      @references = Reference.search(params[:attribute], params[:searchtext])
+    else
+      @references = Reference.all
+    end
   end
 
   def search
-    @references = Reference.search(params[:attribute], params[:searchtext])
+
     render :index
   end
 

@@ -2,10 +2,9 @@
 
 <strong>Search by </strong>
 <% attrs = Array.new %>
+<% attrs << "author" %>
 <% Reference.column_names.each do |name| %>
-    <% if name.include? "author" %>
-        <% attrs << "author" %>
-    <% elsif name.include? "journal" %>
+    <% if name.include? "journal" %>
         <% attrs << "journal" %>
     <% elsif name.include? "publisher" %>
         <% attrs << "publisher" %>
@@ -13,7 +12,7 @@
         <% attrs << "series" %>
     <% elsif name.include? "organization" %>
         <% attrs << "organization" %>
-    <% elsif name.include? "updated_at" or name.include? "created_at" %>
+    <% elsif name.include? "updated_at" or name.include? "created_at" or name == "id" %>
     <% else %>
         <% attrs << name %>
     <% end %>
