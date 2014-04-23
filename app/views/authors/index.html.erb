@@ -1,0 +1,24 @@
+<h1>Listing authors</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @authors.each do |author| %>
+      <tr>
+        <td><%= link_to author.name, author %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of authors: <%= @authors.count %></p>
+
