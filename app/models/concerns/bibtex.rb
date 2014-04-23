@@ -24,12 +24,14 @@ module Bibtex
         bibtex += special_chars(author.name) + " and "
       end
     end
-    bibtex += "editor = {"
-    editors.each_with_index do |editor, index|
-      if (index+1 == editors.length)
-        bibtex += special_chars(editor.name) + "},\n"
-      else
-        bibtex += special_chars(editor.name) + " and "
+    unless editors.blank?
+      bibtex += "editor = {"
+      editors.each_with_index do |editor, index|
+        if (index+1 == editors.length)
+          bibtex += special_chars(editor.name) + "},\n"
+        else
+          bibtex += special_chars(editor.name) + " and "
+        end
       end
     end
     attributes.each_pair do |name, value|
