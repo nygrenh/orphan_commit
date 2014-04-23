@@ -8,6 +8,11 @@ class ReferencesController < ApplicationController
     @references = Reference.all
   end
 
+  def search
+    @references = Reference.search(params[:attribute], params[:searchtext])
+    render :index
+  end
+
 
   # GET /references/1
   # GET /references/1.json

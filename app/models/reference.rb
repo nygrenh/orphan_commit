@@ -70,4 +70,27 @@ class Reference < ActiveRecord::Base
     end
     required.include?(field)
   end
+
+  def search(attribute, searchtext)
+    if (attribute == "journal")
+      journal = Journal.select(id).where('name LIKE ?', searchtext).limit(1)
+      @references = Reference.where(journal_id: journal)
+    elsif (attribute == "publisher")
+      publisher = Publisher.select(id).where('name LIKE ?', searchtext).limit(1)
+      @references = Reference.where(publisher_id: publisher)
+    elsif (attribute == "author")
+      author = Author.select(id).where('name LIKE ?', searchtext).limit(1)
+      @references = Reference.where(author_id: author)
+    elsif (attribute == "series")
+      series = Series.select(id).where('name LIKE ?', searchtext).limit(1)
+      @references = Reference.where(series_id: series)
+    elsif (attribute == "organization")
+      organization = Organization.select(id).where('name LIKE ?', searchtext).limit(1)
+      @references = Reference.where(organization_id: organization)
+    else
+      @references = Reference.first
+
+    end
+    return @references
+  end
 end
