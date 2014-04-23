@@ -1,0 +1,24 @@
+<h1>Listing publishers</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= link_to publisher.name, publisher %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of publishers: <%= @publishers.count %></p>
+

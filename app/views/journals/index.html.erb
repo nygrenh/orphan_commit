@@ -1,0 +1,24 @@
+<h1>Listing journals</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @journals.each do |journal| %>
+      <tr>
+        <td><%= link_to journal.name, journal %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of journals: <%= @journals.count %></p>
+
