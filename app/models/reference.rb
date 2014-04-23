@@ -73,8 +73,29 @@ class Reference < ActiveRecord::Base
   end
 
   def self.search(attribute, searchtext)
-    # year, volume, number, pages, month, note, key, address, edition, booktitle, reference_type, editor
     case attribute
+      when "reference type"
+        @references = Reference.where('reference_type LIKE ?', "%#{searchtext}%")
+      when "booktitle"
+        @references = Reference.where('booktitle LIKE ?', "%#{searchtext}%")
+      when "edition"
+        @references = Reference.where('edition LIKE ?', "%#{searchtext}%")
+      when "address"
+        @references = Reference.where('address LIKE ?', "%#{searchtext}%")
+      when "key"
+        @references = Reference.where('key LIKE ?', "%#{searchtext}%")
+      when "note"
+        @references = Reference.where('note LIKE ?', "%#{searchtext}%")
+      when "month"
+        @references = Reference.where(month: searchtext)
+      when "pages"
+        @references = Reference.where('pages LIKE ?', "%#{searchtext}%")
+      when "number"
+        @references = Reference.where(number: searchtext)
+      when "volume"
+        @references = Reference.where(volume: searchtext)
+      when "year"
+        @references = Reference.where(year: searchtext)
       when "editor"
         editor = Author.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
         refs = ReferenceEditor.select('reference_id').where(author_id: editor)
