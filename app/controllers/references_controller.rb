@@ -7,14 +7,12 @@ class ReferencesController < ApplicationController
   def index
     if params[:searchtext]
       @references = Reference.search(params[:attribute], params[:searchtext])
+      if @references.empty?
+        redirect_to references_path, notice: "No references found"
+      end
     else
       @references = Reference.all
     end
-  end
-
-  def search
-
-    render :index
   end
 
 
