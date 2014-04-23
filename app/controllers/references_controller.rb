@@ -15,6 +15,7 @@ class ReferencesController < ApplicationController
     else
       @references = Reference.all
     end
+    @attrs = attributes_for_search
   end
 
 
@@ -136,6 +137,29 @@ class ReferencesController < ApplicationController
 
   def set_tag_s
     @tag_s = @reference.tags.map(&:name).to_sentence(last_word_connector: ", ", two_words_connector: ", ")
+  end
+
+  def attributes_for_search
+    @attrs = Array.new
+    @attrs << "author"
+    @attrs << "tag"
+    Reference.column_names.each do |name|
+      if name.include? "journal"
+        @attrs << "journal"
+      elsif name.include? "publisher"
+        @attrs << "publisher"
+      elsif name.include? "series"
+        @attrs << "series"
+      elsif name.include? "organization"
+        @attrs << "organization"
+      elsif name.include? "updated_at" or name.include? "created_at" or name == "id"
+      elsif name.include? "reference_type"
+        @attrs << "reference type"
+      else
+        @attrs << name
+      end
+    end
+    @attrs
   end
 
 end
