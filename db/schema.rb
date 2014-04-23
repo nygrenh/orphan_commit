@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408193515) do
+ActiveRecord::Schema.define(version: 20140423145726) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 20140408193515) do
     t.datetime "updated_at"
   end
 
+  create_table "reference_tags", force: true do |t|
+    t.integer  "reference_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "references", force: true do |t|
     t.integer  "journal_id"
     t.string   "title"
@@ -73,6 +80,12 @@ ActiveRecord::Schema.define(version: 20140408193515) do
   end
 
   create_table "series", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
