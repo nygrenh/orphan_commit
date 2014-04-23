@@ -31,6 +31,7 @@
       <th>Title</th>
       <th>Authors</th>
       <th>Year</th>
+      <th>Tags</th>
       <th></th>
     </tr>
   </thead>
@@ -42,6 +43,7 @@
         <td><%= link_to reference.title, reference %></td>
         <td><%= reference.authors_to_s %></td>
         <td><%= reference.year %></td>
+        <td><%= reference.tags.map(&:name).to_sentence(last_word_connector: ", ", two_words_connector: ", ") %></td>
         <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
