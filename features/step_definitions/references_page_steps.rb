@@ -66,17 +66,10 @@ When(/^I go to the page that lists all the references$/) do
   visit references_path
 end
 
-When(/^I go to the page that lists all the references and search with year$/) do
+When(/^I go to the page that lists all the references and search from "(.*?)" with "(.*?)"$/) do |query, value|
   visit references_path
-  select('year', from:'attribute')
-  fill_in('searchtext', with: 2003 )
-  click_button('Search')
-end
-
-When(/^I go to the page that lists all the references and search with author$/) do
-  visit references_path
-  select('author', from:'attribute')
-  fill_in('searchtext', with: "P. Parsa" )
+  select(query, from:'attribute')
+  fill_in('searchtext', with: value)
   click_button('Search')
 end
 
