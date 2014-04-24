@@ -3,7 +3,7 @@
 <div align="right">
     <%= form_tag references_path, :action => 'search', :method => 'get' do %>
       <strong>Search by </strong>
-      <%= select_tag(:attribute, options_for_select(@attrs)) %>
+      <%= select_tag(:attribute, options_for_select(@attrs, selected: params[:attribute])) %>
       <%= text_field_tag :searchtext, params[:searchtext] %>
       <%= submit_tag "Search" %>
     <% end %>

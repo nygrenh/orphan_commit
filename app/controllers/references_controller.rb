@@ -10,7 +10,7 @@ class ReferencesController < ApplicationController
     if params[:searchtext]
       @references = Reference.search(params[:attribute], params[:searchtext])
       if @references.empty?
-        redirect_to references_path, notice: "No references found"
+        redirect_to references_path(attribute: params[:attribute]), notice: "No references found"
       end
     else
       @references = Reference.all
