@@ -72,6 +72,13 @@ class Reference < ActiveRecord::Base
     required.include?(field)
   end
 
+  # tähän tehdyt refaktoroinnit johtuvat siitä, että vanhassa tavassa limit(1) esti löytämästä haettua tietoa tietyissä tapauksissa
+  # esim. jos oli sekä Author, jonka nimi on Loller, ja Editor, jonka nimi on Lolled, ja etsitään editorin perusteella
+  # "Lolle" hakusanalla, ei löydetty tietoja. Tämä johtui siitä, että limit(1) takia Author taulusta valittiin
+  # vain ensimmäinen henkilö, jonka nimeen sisältyi sana "Lolle", eli Loller. Kuitenkaan tällä ei ollut referencejä
+  # editorina, joten sanottiin "No references found", vaikka olisi pitänyt löytyä henkilön referencet
+  # Vastaavasti, jos on vaikka kaksi organistaatiota, "NSA" ja "NASA", ja etsitään "SA", näytettiin vain
+  # taulussa ensimmäisenä olevan organisaation referencet
   def self.search(attribute, searchtext)
     case attribute
       when "reference type"
@@ -97,30 +104,69 @@ class Reference < ActiveRecord::Base
       when "year"
         @references = Reference.where(year: searchtext)
       when "editor"
-        editor = Author.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        refs = ReferenceEditor.select('reference_id').where(author_id: editor)
+        editors = Author.select('id').where('name LIKE ?', "%#{searchtext}%")
+        refs = Array.new
+        editors.each do |editor|
+          ReferenceEditor.select('reference_id').where(author_id: editor).each do |r|
+            refs << r.reference_id
+          end
+        end
         @references = Reference.where(id: refs)
       when "journal"
-        journal = Journal.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        @references = Reference.where(journal_id: journal)
+        journals = Journal.select('id').where('name LIKE ?', "%#{searchtext}%")
+        @references = Array.new
+        journals.each do |journal|
+          Reference.where(journal_id: journal).each do |r|
+            @references << r
+          end
+        end
+        @references
       when "publisher"
-        publisher = Publisher.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        @references = Reference.where(publisher_id: publisher)
+        publishers = Publisher.select('id').where('name LIKE ?', "%#{searchtext}%")
+        @references = Array.new
+        publishers.each do |publisher|
+          Reference.where(publisher_id: publisher).each do |r|
+            @references << r
+          end
+        end
+        @references
       when "series"
-        series = Series.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        @references = Reference.where(series_id: series)
+        series = Series.select('id').where('name LIKE ?', "%#{searchtext}%")
+        @references = Array.new
+        series.each do |serie|
+          Reference.where(series_id: serie).each do |r|
+            @references << r
+          end
+        end
+        @references
       when "organization"
-        organization = Organization.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        @references = Reference.where(organization_id: organization)
+        organizations = Organization.select('id').where('name LIKE ?', "%#{searchtext}%")
+        @references = Array.new
+        organizations.each do |organization|
+          Reference.where(organization_id: organization).each do |r|
+            @references << r
+          end
+        end
+        @references
       when "author"
-        author = Author.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        refs = ReferenceAuthor.select('reference_id').where(author_id: author)
+        authors = Author.select('id').where('name LIKE ?', "%#{searchtext}%")
+        refs = Array.new
+        authors.each do |author|
+          ReferenceAuthor.select('reference_id').where(author_id: author).each do |r|
+            refs << r.reference_id
+          end
+        end
         @references = Reference.where(id: refs)
       when "title"
         @references = Reference.where('title LIKE ?', "%#{searchtext}%")
       when "tag"
-        tag = Tag.select('id').where('name LIKE ?', "%#{searchtext}%").limit(1)
-        refs = ReferenceTag.select('reference_id').where(tag_id: tag)
+        tags = Tag.select('id').where('name LIKE ?', "%#{searchtext}%")
+        refs = Array.new
+        tags.each do |tag|
+          ReferenceTag.select('reference_id').where(tag_id: tag).each do |r|
+            refs << r.reference_id
+          end
+        end
         @references = Reference.where(id: refs)
       else
         query = Hash.new
