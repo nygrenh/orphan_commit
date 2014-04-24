@@ -32,6 +32,11 @@ FactoryGirl.define do
     reference_id 1
   end
 
+  factory :reference_tag do
+    reference_id 1
+    tag_id 1
+  end
+
   factory :reference_author, class: ReferenceAuthor do
     author_id 1
     reference_id 1
@@ -83,6 +88,10 @@ FactoryGirl.define do
 
   factory :series do
       name "Random kokoelmat"
+  end
+
+  factory :tag do
+    name "Random kokoelmat"
   end
 
   factory :organization do

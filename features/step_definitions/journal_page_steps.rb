@@ -25,6 +25,7 @@ Given(/^two article references have been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 
   visit new_article_path
@@ -40,5 +41,6 @@ Given(/^two article references have been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end

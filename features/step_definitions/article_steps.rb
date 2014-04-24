@@ -21,6 +21,7 @@ Given(/^I fill in all the fields with correct input values$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 
 end
 
@@ -37,6 +38,7 @@ Given(/^I do not fill in all the fields with correct input values$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 end
 
 
