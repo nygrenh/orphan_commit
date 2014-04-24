@@ -12,8 +12,8 @@ module Bibtex
   def generate_bibtex()
     bibtex = "@" + reference_type + "{"
     bibtex += key_s
-    bibtex += field_s('author', authors.to_a.to_sentence)
-    bibtex += field_s('editor', editors.to_a.to_sentence) unless editors.blank?
+    bibtex += field_s('author', authors.to_sentence(:words_connector => ' and '))
+    bibtex += field_s('editor', editors.to_a.to_sentence(:words_connector => ' and ')) unless editors.blank?
     attributes.each_pair do |name, value|
     unless name == "id" or name == "reference_type" or name == "key" or name == "updated_at" or name == "created_at" or value.nil? or value == ""
       if name.include? "_id"
