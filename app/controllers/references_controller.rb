@@ -40,12 +40,6 @@ class ReferencesController < ApplicationController
     @reference.reference_type = "Inproceedings"
   end
 
-  # GET /references/1/edit
-=begin
-  def edit
-  end
-=end
-
   # POST /references
   # POST /references.json
   def create
@@ -72,24 +66,6 @@ class ReferencesController < ApplicationController
       end
     end
   end
-
-
-  # PATCH/PUT /references/1
-  # PATCH/PUT /references/1.json
-=begin
-  def update
-    update_tags(params[:reference][:tags])
-    respond_to do |format|
-      if @reference.update(reference_params)
-        format.html { redirect_to @reference, notice: 'Reference was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @reference.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-=end
 
   # DELETE /references/1
   # DELETE /references/1.json

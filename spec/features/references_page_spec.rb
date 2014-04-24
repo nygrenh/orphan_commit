@@ -227,7 +227,6 @@ describe "References page" do
       it "gets the right error messages" do 
         visit new_article_path
         click_button('Create Reference')
-        save_and_open_page
         expect(page).to have_content "Title can't be empty"
         expect(page).to have_content "Authors can't be empty"
         expect(page).to have_content "Year can't be empty"
