@@ -260,7 +260,7 @@ describe "References page" do
       end
 
       visit references_path
-      save_and_open_page
+
 
     end
 
@@ -300,6 +300,18 @@ describe "References page" do
       expect(page).to have_content "2003"
       expect(page).not_to have_content "2005"
       expect(page).not_to have_content "2004"
+
+    end
+
+    it "user can search reference with author" do
+      select('author', from:'attribute')
+      fill_in('searchtext', with: "Pekka")
+      click_button('Search')
+
+      expect(page).to have_content "Pekan kuvakirja"
+
+      expect(page).to have_content "2001"
+
 
     end
 
