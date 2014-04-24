@@ -72,13 +72,6 @@ class Reference < ActiveRecord::Base
     required.include?(field)
   end
 
-  # tähän tehdyt refaktoroinnit johtuvat siitä, että vanhassa tavassa limit(1) esti löytämästä haettua tietoa tietyissä tapauksissa
-  # esim. jos oli sekä Author, jonka nimi on Loller, ja Editor, jonka nimi on Lolled, ja etsitään editorin perusteella
-  # "Lolle" hakusanalla, ei löydetty tietoja. Tämä johtui siitä, että limit(1) takia Author taulusta valittiin
-  # vain ensimmäinen henkilö, jonka nimeen sisältyi sana "Lolle", eli Loller. Kuitenkaan tällä ei ollut referencejä
-  # editorina, joten sanottiin "No references found", vaikka olisi pitänyt löytyä henkilön referencet
-  # Vastaavasti, jos on vaikka kaksi organistaatiota, "NSA" ja "NASA", ja etsitään "SA", näytettiin vain
-  # taulussa ensimmäisenä olevan organisaation referencet
   def self.search(attribute, searchtext)
     case attribute
       when "reference type"
