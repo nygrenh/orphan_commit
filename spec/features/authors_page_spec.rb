@@ -4,7 +4,7 @@ describe "Authors page" do
   it "should not have any before some are created" do
     visit authors_path
     expect(page).to have_content 'Listing authors'
-    expect(page).to have_content 'Number of authors: 0'
+    expect(page).to have_content 'Number of people: 0'
   end
 
   describe "when a single author is added" do
@@ -16,7 +16,7 @@ describe "Authors page" do
     end
 
     it "shows the correct total number of authors" do
-      expect(page).to have_content 'Number of authors: 1'
+      expect(page).to have_content 'Number of people: 1'
     end
 
     it "shows the correct name of author" do
@@ -36,7 +36,7 @@ describe "Authors page" do
     end
 
     it "shows the correct total number of authors" do
-      expect(page).to have_content 'Number of authors: 3'
+      expect(page).to have_content 'Number of people: 3'
     end
 
     it "shows the correct name of author" do

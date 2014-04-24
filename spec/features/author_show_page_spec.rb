@@ -7,8 +7,8 @@ describe "Author show page" do
 
   it "should not have any references before some are created" do
     visit author_path(author)
-    expect(page).to have_content 'Author does not have any references as author!'
-    expect(page).to have_content 'Author does not have any references as editor!'
+    expect(page).to have_content 'Person does not have any references as author!'
+    expect(page).to have_content 'Person does not have any references as editor!'
   end
 
   describe "when a single article reference is added" do
@@ -30,7 +30,7 @@ describe "Author show page" do
       expect(page).to have_content 'Authors'
       expect(page).to have_content 'Year'
       expect(page).to have_content '2014'
-      expect(page).to have_content 'Author does not have any references as editor!'
+      expect(page).to have_content 'Person does not have any references as editor!'
     end
 
     it "shows the correct name of author" do
@@ -59,7 +59,7 @@ describe "Author show page" do
       expect(page).to have_content 'P. Parsa'
       expect(page).to have_content 'Year'
       expect(page).to have_content '2014'
-      expect(page).to have_content 'Author does not have any references as author!'
+      expect(page).to have_content 'Person does not have any references as author!'
     end
 
     it "shows the correct name of author" do
