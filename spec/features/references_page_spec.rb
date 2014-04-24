@@ -145,7 +145,6 @@ describe "References page" do
       fill_in('reference_key', with: 'fdtgvj863')
 
       click_button('Create Reference')
-
       expect(page).to have_content "prohibited this reference from being saved"
       expect(Reference.count).to eq(0)
 
@@ -201,6 +200,40 @@ describe "References page" do
       expect(Reference.count).to eq(0)
     end
 
+  end
+
+  describe "when adding with no paramers" do
+    describe "inproceeding" do
+      it "gets the right error messages" do 
+        visit new_inproceedings_path
+        click_button('Create Reference')
+        expect(page).to have_content "Title can't be empty"
+        expect(page).to have_content "Authors can't be empty"
+        expect(page).to have_content "Year can't be empty"
+        expect(page).to have_content "Booktitle can't be empty"
+      end
+    end
+    describe "book" do
+      it "gets the right error messages" do 
+        visit new_book_path
+        click_button('Create Reference')
+        expect(page).to have_content "Title can't be empty"
+        expect(page).to have_content "Authors can't be empty"
+        expect(page).to have_content "Year can't be empty"
+        expect(page).to have_content "Publisher can't be empty"
+      end
+    end
+    describe "article" do
+      it "gets the right error messages" do 
+        visit new_article_path
+        click_button('Create Reference')
+        save_and_open_page
+        expect(page).to have_content "Title can't be empty"
+        expect(page).to have_content "Authors can't be empty"
+        expect(page).to have_content "Year can't be empty"
+        expect(page).to have_content "Journal can't be empty"
+      end
+    end
   end
 
   it "user can delete a reference" do
