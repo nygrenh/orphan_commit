@@ -1,0 +1,24 @@
+<h1>Listing tags</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, tag %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Number of tags: <%= @tags.count %></p>
+

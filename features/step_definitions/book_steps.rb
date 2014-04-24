@@ -23,6 +23,7 @@ Given(/^I fill in all the fields with correct values$/) do
   fill_in('reference_note', with: 'Remember this')
   fill_in('reference_address', with: 'Main Street 3')
   fill_in('reference_key', with: 'XTY567')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 end
 
 Given(/^I do not fill in all the fields with correct values$/) do
@@ -39,6 +40,7 @@ Given(/^I do not fill in all the fields with correct values$/) do
   fill_in('reference_note', with: 'Remember this')
   fill_in('reference_address', with: 'Main Street 3')
   fill_in('reference_key', with: 'XTY567')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 end
 
 

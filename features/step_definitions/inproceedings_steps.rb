@@ -25,6 +25,7 @@ Given(/^I fill in all the fields with the correct values$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 end
 
 Given(/^I do not fill in all the fields with the correct values$/) do
@@ -43,6 +44,7 @@ Given(/^I do not fill in all the fields with the correct values$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
 end
 
 

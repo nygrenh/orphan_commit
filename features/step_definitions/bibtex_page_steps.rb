@@ -24,6 +24,7 @@ Given(/^book reference has been added$/) do
   fill_in('reference_note', with: 'Remember this')
   fill_in('reference_address', with: 'Main Street 3')
   fill_in('reference_key', with: 'XTY567')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end
 
@@ -41,6 +42,7 @@ Given(/^article reference has been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end
 
@@ -61,6 +63,7 @@ Given(/^inproceedings reference has been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end
 
@@ -85,6 +88,7 @@ Given(/^one reference of every type has been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 
   visit new_book_path
@@ -101,6 +105,7 @@ Given(/^one reference of every type has been added$/) do
   fill_in('reference_note', with: 'Remember this')
   fill_in('reference_address', with: 'Main Street 3')
   fill_in('reference_key', with: 'XTY567')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 
   visit new_article_path
@@ -116,6 +121,7 @@ Given(/^one reference of every type has been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 7')
   fill_in('reference_key', with: 'fdtgvj863')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end
 

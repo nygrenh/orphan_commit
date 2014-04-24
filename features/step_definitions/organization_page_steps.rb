@@ -28,6 +28,7 @@ Given(/^two inproceedings references have been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 
   visit new_inproceedings_path
@@ -46,5 +47,6 @@ Given(/^two inproceedings references have been added$/) do
   fill_in('reference_publisher_name', with: 'Publisher first')
   fill_in('reference_address', with: 'Main Street 5')
   fill_in('reference_key', with: '1245khhj')
+  fill_in('reference_tags', with: 'Testi1, Testi2')
   click_button("Create Reference")
 end
