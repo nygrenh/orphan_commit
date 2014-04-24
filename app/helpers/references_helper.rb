@@ -16,14 +16,14 @@ module ReferencesHelper
 
 
 	def init_journal_object(reference_params, attributes)
-	    if not reference_params[:journal][:name].blank?
+	    if not reference_params[:journal].blank? || reference_params[:journal][:name].blank?
 	    	journal_attributes = reference_params[:journal]
 	        attributes.update(journal: Journal.find_or_initialize_by(name: journal_attributes[:name]))
 	    end
 	end
 
 	def init_publisher_object(reference_params, attributes)
-	    if not reference_params[:publisher][:name].blank?
+	    if not reference_params[:publisher].blank? || reference_params[:publisher][:name].blank?
 	      	publisher_attributes = reference_params[:publisher]
 	        attributes.update(publisher: Publisher.find_or_initialize_by(name: publisher_attributes[:name]))
 	    end
