@@ -11,29 +11,9 @@ module Bibtex
 
   def generate_bibtex()
     bibtex = "@" + reference_type + "{"
-    if key == ""
-      bibtex += special_chars(random_key()) + ",\n"
-    else
-      bibtex += special_chars(key) + ",\n"
-    end
-    bibtex += "author = {"
-    authors.each_with_index do |author, index|
-      if (index+1 == authors.length)
-        bibtex += special_chars(author.name) + "},\n"
-      else
-        bibtex += special_chars(author.name) + " and "
-      end
-    end
-    unless editors.blank?
-      bibtex += "editor = {"
-      editors.each_with_index do |editor, index|
-        if (index+1 == editors.length)
-          bibtex += special_chars(editor.name) + "},\n"
-        else
-          bibtex += special_chars(editor.name) + " and "
-        end
-      end
-    end
+    bibtex += key_s
+    bibtex += field_s('author', authors.to_a.to_sentence)
+    bibtex += field_s('editor', editors.to_a.to_sentence) unless editors.blank?
     attributes.each_pair do |name, value|
     unless name == "id" or name == "reference_type" or name == "key" or name == "updated_at" or name == "created_at" or value.nil? or value == ""
       if name.include? "_id"
@@ -57,5 +37,19 @@ module Bibtex
 
   def special_chars(string)
     string = string.gsub(/[åäöÅÄÖ]/, 'å' => '\aa', 'ä' => '\"{a}', 'ö' => '\"{o}', 'Å' => '\AA', 'Ä' => '\"{A}', 'Ö' => '\"{O}')
+  end
+
+  def field_s(name, field)
+    s = name + " = {"
+    s += special_chars(field)
+    s += "},\n"
+  end
+
+  def key_s
+    if key.blank?
+      special_chars(random_key()) + ",\n"
+    else
+      special_chars(key) + ",\n"
+    end
   end
 end
