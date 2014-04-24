@@ -4,64 +4,40 @@ module ReferencesHelper
 	def create_attribute_object_hash(reference_params)
 		attributes = Hash.new
 
-		init_journal_object(reference_params, attributes)
-		init_publisher_object(reference_params, attributes)
-		init_series_object(reference_params, attributes)
-		init_organization_object(reference_params, attributes)
-		init_author_objects(reference_params, attributes)
-		init_editor_objects(reference_params, attributes)
+		init_author_objects(reference_params, attributes, :authors)
+		init_author_objects(reference_params, attributes, :editors)
 
-		return attributes
+		init_object(reference_params, attributes, :journal)
+		init_object(reference_params, attributes, :publisher)
+		init_object(reference_params, attributes, :series)
+		init_object(reference_params, attributes, :organization)
+		attributes
 	end
 
-
-	def init_journal_object(reference_params, attributes)
-	    if not reference_params[:journal].blank? || reference_params[:journal][:name].blank?
-	    	journal_attributes = reference_params[:journal]
-	        attributes.update(journal: Journal.find_or_initialize_by(name: journal_attributes[:name]))
+	def init_object(params, attributes, symbol)
+		return unless params[symbol]
+		name = params[symbol]['name'] || params[symbol]
+		unless name.blank?
+			table = eval(symbol.to_s.titlecase)
+	        attributes.update(symbol => table.find_or_initialize_by(name: name))
 	    end
 	end
 
-	def init_publisher_object(reference_params, attributes)
-	    if not reference_params[:publisher].blank? || reference_params[:publisher][:name].blank?
-	      	publisher_attributes = reference_params[:publisher]
-	        attributes.update(publisher: Publisher.find_or_initialize_by(name: publisher_attributes[:name]))
+	def init_author_objects(reference_params, attributes, symbol)
+		authors_attributes = reference_params[symbol]
+	    unless authors_attributes.blank?
+	      attributes.update(symbol => init_or_find_authors_or_editors(authors_attributes)) 
 	    end
 	end
 
-	def init_series_object(reference_params, attributes)
-		if not reference_params[:series].blank?
-      		attributes.update(series: Series.find_or_initialize_by(name: reference_params[:series]))
-    	end
-	end
-
-	def init_organization_object(reference_params, attributes)
-	    if not reference_params[:organization].blank?
-      		attributes.update(organization: Organization.find_or_initialize_by(name: reference_params[:organization]))
-   		end
-	end
-
-	def init_author_objects(reference_params, attributes)
-		authors_attributes = reference_params[:authors]
-	    if not authors_attributes.blank?
-	      attributes.update(authors: init_or_find_authors_or_editors(authors_attributes)) #metodin runko on helpers/application_helper -tiedostossa
-	    end
-	end
-
-	def init_editor_objects(reference_params, attributes)
-	    editors_attributes = reference_params[:editors]
-	    if not editors_attributes.blank?
-	      attributes.update(editors: init_or_find_authors_or_editors(editors_attributes)) #authors ja editors samassa taulussa
-	    end
-	end
 
 	def connect_attributes_to_reference(reference, attributes)
 		reference.publisher = attributes[:publisher]
-    reference.journal = attributes[:journal]
-    reference.series = attributes[:series]
-    reference.organization = attributes[:organization]
-    reference.authors_present = attributes[:authors].present?
-    reference.editors_present = attributes[:editors].present?
+    	reference.journal = attributes[:journal]
+    	reference.series = attributes[:series]
+    	reference.organization = attributes[:organization]
+    	reference.authors_present = attributes[:authors].present?
+    	reference.editors_present = attributes[:editors].present?
 	end
 
 	def create_author_and_editor_links(reference, attributes)
