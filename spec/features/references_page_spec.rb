@@ -236,4 +236,85 @@ describe "References page" do
     expect(Reference.count).to eq(0)
   end
 
+  describe "when many references are added" do
+    before :each do
+      @titles = ["Pekan kuvakirja", "Penan piirrokset", "Ripan raapustukset"]
+      year = 2001
+      @titles.each do |title|
+        FactoryGirl.create(:reference_article, title: title, year: year)
+        year += 1
+      end
+
+      @inproceedingstitles = ["Pekan kuvakirja", "Penan piirrokset2", "Ripan raapustukset2"]
+      year = 2002
+      @inproceedingstitles.each do |title|
+        FactoryGirl.create(:reference_inproceedings, title: title, year: year)
+        year += 1
+      end
+
+      @booktitles = ["Pekan kuvakirja", "Penan piirrokset2", "Ripan raapustukset2"]
+      year = 2003
+      @booktitles.each do |title|
+        FactoryGirl.create(:reference_book, title: title, year: year)
+        year += 1
+      end
+
+      visit references_path
+
+
+    end
+
+    it "user can search reference with year" do
+      select('year', from:'attribute')
+      fill_in('searchtext', with: "2003")
+      click_button('Search')
+
+      expect(page).to have_content "Ripan raapustukset"
+      expect(page).to have_content "Penan piirrokset2"
+      expect(page).to have_content "Pekan kuvakirja"
+      expect(page).to have_content "Book"
+      expect(page).to have_content "Inproceedings"
+      expect(page).to have_content "Article"
+
+      expect(page).not_to have_content "2001"
+      expect(page).not_to have_content "2002"
+      expect(page).not_to have_content "2004"
+      expect(page).not_to have_content "2005"
+
+    end
+
+    it "user can search reference with title" do
+      select('title', from:'attribute')
+      fill_in('searchtext', with: "Pekan kuvakirja")
+      click_button('Search')
+
+      expect(page).not_to have_content "Ripan raapustukset"
+      expect(page).not_to have_content "Penan piirrokset2"
+      expect(page).to have_content "Pekan kuvakirja"
+      expect(page).to have_content "Book"
+      expect(page).to have_content "Inproceedings"
+      expect(page).to have_content "Article"
+
+      expect(page).to have_content "2001"
+      expect(page).to have_content "2002"
+      expect(page).to have_content "2003"
+      expect(page).not_to have_content "2005"
+      expect(page).not_to have_content "2004"
+
+    end
+
+    it "user can search reference with author" do
+      select('author', from:'attribute')
+      fill_in('searchtext', with: "Pekka")
+      click_button('Search')
+
+      expect(page).to have_content "Pekan kuvakirja"
+
+      expect(page).to have_content "2001"
+
+
+    end
+
+  end
+
 end
