@@ -34,7 +34,7 @@ Feature: References page
 
   Scenario: User can search references
     Given two references of every type have been added
-    When I go to the page that lists all the references and search with year
+    When I go to the page that lists all the references and search from "year" with "2003"
     Then I should see the following contents
       | Inproceedings |
       | InpTitle1 |
@@ -48,9 +48,9 @@ Feature: References page
       | 2003 |
       | Testi1, Testi2 |
 
-  Scenario: User can search references
+    Scenario: User can search references
     Given two references of every type have been added
-    When I go to the page that lists all the references and search with author
+    When I go to the page that lists all the references and search from "author" with "P. Parsa"
     Then I should see the following contents
       | Article |
       | ArticleTitle1 |
@@ -64,3 +64,35 @@ Feature: References page
       | 2004 |
       | Testi1, Testi2 |
 
+  Scenario: User can search references
+    Given two references of every type have been added
+    When I go to the page that lists all the references and search from "reference type" with "Article"
+    Then I should see the following contents
+      | Article |
+      | ArticleTitle1 |
+      | P. Parsa |
+      | 2003 |
+      | Testi1, Testi2 |
+      | Destroy |
+      | Article |
+      | ArticleTitle2 |
+      | P. Parsa |
+      | 2004 |
+      | Testi1, Testi2 |
+
+  Scenario: User can search references
+    Given two references of every type have been added
+    When I go to the page that lists all the references and search from "booktitle" with "Best book"
+    Then I should see the following contents
+      | Inproceedings |
+      | InpTitle1 |
+      | P. Puska & Co. |
+      | 2003 |
+      | Testi1, Testi2 |
+      | Destroy |
+      | Inproceedings |
+      | InpTitle2 |
+      | P. Puska & Co. |
+      | 2004 |
+      | Testi1, Testi2 |
+      | Destroy |

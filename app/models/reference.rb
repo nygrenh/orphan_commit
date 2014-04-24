@@ -15,11 +15,6 @@ class Reference < ActiveRecord::Base
 
   validate :reference_specific_validations
 
-  # if reference_type("Article")
-
-  # end
-
-
   validates :year,          numericality: {less_than_or_equal_to: ->(_) { Time.now.year },
                                            greater_than_or_equal_to: 0}
 
