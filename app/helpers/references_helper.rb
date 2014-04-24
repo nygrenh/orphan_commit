@@ -16,14 +16,14 @@ module ReferencesHelper
 
 
 	def init_journal_object(reference_params, attributes)
-	    if not reference_params[:journal].blank?
+	    if not reference_params[:journal][:name].blank?
 	    	journal_attributes = reference_params[:journal]
 	        attributes.update(journal: Journal.find_or_initialize_by(name: journal_attributes[:name]))
 	    end
 	end
 
 	def init_publisher_object(reference_params, attributes)
-	    if not reference_params[:publisher].blank?
+	    if not reference_params[:publisher][:name].blank?
 	      	publisher_attributes = reference_params[:publisher]
 	        attributes.update(publisher: Publisher.find_or_initialize_by(name: publisher_attributes[:name]))
 	    end
@@ -57,11 +57,11 @@ module ReferencesHelper
 
 	def connect_attributes_to_reference(reference, attributes)
 		reference.publisher = attributes[:publisher]
-    	reference.journal = attributes[:journal]
-    	reference.series = attributes[:series]
-    	reference.organization = attributes[:organization]
-    	reference.authors_present = attributes[:authors].present?
-    	reference.editors_present = attributes[:editors].present?
+    reference.journal = attributes[:journal]
+    reference.series = attributes[:series]
+    reference.organization = attributes[:organization]
+    reference.authors_present = attributes[:authors].present?
+    reference.editors_present = attributes[:editors].present?
 	end
 
 	def create_author_and_editor_links(reference, attributes)
