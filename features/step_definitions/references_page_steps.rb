@@ -51,14 +51,14 @@ Given(/^no references have been added$/) do
 end
 
 Given(/^two references of every type have been added$/) do
-  create_inproceedings_reference("InpTitle1", 2003)
-  create_inproceedings_reference("InpTitle2", 2004)
+  create_inproceedings_reference("InpTitle1", 2003, 'P. Puska & Co.')
+  create_inproceedings_reference("InpTitle2", 2004, 'P. Puska & Co.')
 
-  create_book_reference("BookTitle1", 2004)
-  create_book_reference("BookTitle2", 2005)
+  create_book_reference("BookTitle1", 2004, 'P. Puska')
+  create_book_reference("BookTitle2", 2005, 'P. Puska')
 
-  create_article_reference("ArticleTitle1", 2003)
-  create_article_reference("ArticleTitle2", 2004)
+  create_article_reference("ArticleTitle1", 2003, 'P. Parsa')
+  create_article_reference("ArticleTitle2", 2004, 'P. Parsa')
 
 end
 
@@ -85,11 +85,11 @@ Then(/^the page should have the message "(.*?)"$/) do |string|
   expect(page).to have_content string
 end
 
-def create_inproceedings_reference(title, year)
+def create_inproceedings_reference(title, year, author)
   visit new_inproceedings_path
   fill_in('reference_title', with: title)
   fill_in('reference_year', with: year)
-  fill_in('reference_authors_names', with: 'P. Puska & Co.')
+  fill_in('reference_authors_names', with: author)
   fill_in('reference_booktitle', with: 'Best book')
   fill_in('reference_editors_names', with: 'P. Parsa')
   fill_in('reference_series', with: '1.')
@@ -106,12 +106,12 @@ def create_inproceedings_reference(title, year)
   click_button("Create Reference")
 end
 
-def create_book_reference(title, year)
+def create_book_reference(title, year, author)
 
   visit new_book_path
   fill_in('reference_title', with: title)
   fill_in('reference_year', with: year)
-  fill_in('reference_authors_names', with: 'P. Puska')
+  fill_in('reference_authors_names', with: author)
   fill_in('reference_publisher_name', with: 'Best publisher')
   fill_in('reference_editors_names', with: 'P. Parsa')
   fill_in('reference_edition', with: '1.')
@@ -126,12 +126,12 @@ def create_book_reference(title, year)
   click_button("Create Reference")
 end
 
-def create_article_reference(title, year)
+def create_article_reference(title, year, author)
   visit new_article_path
   fill_in('reference_title', with: title)
   fill_in('reference_year', with: year)
   fill_in('reference_journal_name', with: 'Best Journal')
-  fill_in('reference_authors_names', with: 'P. Parsa')
+  fill_in('reference_authors_names', with: author)
   fill_in('reference_volume', with: '54')
   fill_in('reference_number', with: '7')
   fill_in('reference_pages', with: '250--580')
