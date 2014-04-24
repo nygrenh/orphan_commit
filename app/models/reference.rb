@@ -70,98 +70,46 @@ class Reference < ActiveRecord::Base
   def self.search(attribute, searchtext)
     case attribute
       when "reference type"
-        @references = Reference.where('reference_type LIKE ?', "%#{searchtext}%")
-      when "booktitle"
-        @references = Reference.where('booktitle LIKE ?', "%#{searchtext}%")
-      when "edition"
-        @references = Reference.where('edition LIKE ?', "%#{searchtext}%")
-      when "address"
-        @references = Reference.where('address LIKE ?', "%#{searchtext}%")
-      when "key"
-        @references = Reference.where('key LIKE ?', "%#{searchtext}%")
-      when "note"
-        @references = Reference.where('note LIKE ?', "%#{searchtext}%")
-      when "month"
-        @references = Reference.where(month: searchtext)
-      when "pages"
-        @references = Reference.where('pages LIKE ?', "%#{searchtext}%")
-      when "number"
-        @references = Reference.where(number: searchtext)
-      when "volume"
-        @references = Reference.where(volume: searchtext)
-      when "year"
-        @references = Reference.where(year: searchtext)
+        non_exact_search("reference_type", searchtext)
       when "editor"
-        editors = Author.select('id').where('name LIKE ?', "%#{searchtext}%")
-        refs = Array.new
-        editors.each do |editor|
-          ReferenceEditor.select('reference_id').where(author_id: editor).each do |r|
-            refs << r.reference_id
-          end
-        end
-        @references = Reference.where(id: refs)
-      when "journal"
-        journals = Journal.select('id').where('name LIKE ?', "%#{searchtext}%")
-        @references = Array.new
-        journals.each do |journal|
-          Reference.where(journal_id: journal).each do |r|
-            @references << r
-          end
-        end
-        @references
-      when "publisher"
-        publishers = Publisher.select('id').where('name LIKE ?', "%#{searchtext}%")
-        @references = Array.new
-        publishers.each do |publisher|
-          Reference.where(publisher_id: publisher).each do |r|
-            @references << r
-          end
-        end
-        @references
-      when "series"
-        series = Series.select('id').where('name LIKE ?', "%#{searchtext}%")
-        @references = Array.new
-        series.each do |serie|
-          Reference.where(series_id: serie).each do |r|
-            @references << r
-          end
-        end
-        @references
-      when "organization"
-        organizations = Organization.select('id').where('name LIKE ?', "%#{searchtext}%")
-        @references = Array.new
-        organizations.each do |organization|
-          Reference.where(organization_id: organization).each do |r|
-            @references << r
-          end
-        end
-        @references
-      when "author"
-        authors = Author.select('id').where('name LIKE ?', "%#{searchtext}%")
-        refs = Array.new
-        authors.each do |author|
-          ReferenceAuthor.select('reference_id').where(author_id: author).each do |r|
-            refs << r.reference_id
-          end
-        end
-        @references = Reference.where(id: refs)
-      when "title"
-        @references = Reference.where('title LIKE ?', "%#{searchtext}%")
-      when "tag"
-        tags = Tag.select('id').where('name LIKE ?', "%#{searchtext}%")
-        refs = Array.new
-        tags.each do |tag|
-          ReferenceTag.select('reference_id').where(tag_id: tag).each do |r|
-            refs << r.reference_id
-          end
-        end
-        @references = Reference.where(id: refs)
-      else
-        query = Hash.new
-        query[attribute] = searchtext
-        @references = Reference.where(query)
+        search_from_editor(searchtext)
+      when "title", "booktitle", "edition", "address", "key", "note", "pages"
+        non_exact_search(attribute, searchtext)
+      when "number", "volume", "year", "month"
+        exact_search(attribute, searchtext)
+      when "journal", "publisher", "series", "organization", "author", "tag"
+        search_from(attribute, searchtext)
     end
-    return @references
+  end
+
+  def self.non_exact_search(attribute, searchtext)
+    @references = Reference.where(attribute + ' LIKE ?', "%#{searchtext}%")
+  end
+
+  def self.exact_search(attribute, searchtext)
+    @references = Reference.where(attribute => searchtext)
+  end
+
+  def self.search_from_editor(searchtext)
+    entries = Author.where('name LIKE ?', "%#{searchtext}%")
+    @references = Array.new
+    entries.each do |entry|
+      entry.edited_references.each do |r|
+        @references << r
+      end
+    end
+    @references
+  end
+
+  def self.search_from(table, searchtext)
+    entries = eval(table.capitalize).where('name LIKE ?', "%#{searchtext}%")
+    @references = Array.new
+    entries.each do |entry|
+      entry.references.each do |r|
+        @references << r
+      end
+    end
+    @references
   end
 
 end
