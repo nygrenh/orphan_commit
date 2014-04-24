@@ -17,7 +17,7 @@ Feature: Author page
       | P. Parsa |
       | 2014|
 
-    And the page should have message "Author does not have any references as editor!"
+    And the page should have message "Person does not have any references as editor!"
 
   Scenario: User can see references when author is only an editor
     Given inproceedings reference has been added
@@ -34,7 +34,7 @@ Feature: Author page
       | P. Parsa |
       | 2014|
 
-    And the page should have message "Author does not have any references as author!"
+    And the page should have message "Person does not have any references as author!"
 
 
   Scenario: User can see many references when author has many
