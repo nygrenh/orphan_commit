@@ -17,4 +17,6 @@ deploy:
   app: orphan-commit
   on:
     repo: nygrenh/orphan_commit
-  run: "rake db:migrate"
+  run: 
+   - "rake db:migrate"
+   - restart
